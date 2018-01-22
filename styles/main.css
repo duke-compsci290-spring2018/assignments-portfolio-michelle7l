@@ -1,0 +1,86 @@
+
+
+body {
+    background-color: ivory;
+    padding-top: 10px;
+    text-align: center;
+    
+}
+
+@font-face {
+    
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+#bio {
+    max-width: 600px;
+    text-align: center;
+    display: block;
+    margin: 10px auto;
+    width 50%;
+}
+
+ol {
+    text-align: left;
+    display: block;
+    margin: 20px auto;
+    width 50%;
+    max-width: 800px;
+}
+
+
+a:link {
+    color:black;
+}
+
+a:visited {
+    color:black;
+}
+
+a:hover {
+    color:darkgreen;
+}
+
+.container {
+    padding: 10px;
+}
+
+#name {
+    font-size: 40px;
+}
+
+.header {
+    font-size: 20px;
+}
+
+
+p {
+    padding: 5px;
+}
+
+.p1{
+    max-width: 800px;
+    text-align: center;
+    display: block;
+    margin: 10px auto;
+    width 50%;
+}
+
+ul {
+    text-align: left;
+    display: block;
+    margin: 5px auto;
+    width 50%;
+    max-width: 800px;
+}
+
+footer {
+    padding:20px;
+}
+
+
