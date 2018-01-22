@@ -1,0 +1,66 @@
+body {
+    background-color: ivory;
+    padding-top: 10px;
+    text-align: center;
+    max-width: 610px;
+    text-align: center;
+    display: block;
+    margin: 10px auto;
+    width 50%;
+    margin-bottom: 50px;
+    
+}
+
+@font-face {
+    
+}
+* {
+    box-sizing: border-box;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+}
+
+a:link {
+    color:black;
+}
+
+a:visited {
+    color:black;
+}
+
+a:hover {
+    color:grey;
+}
+
+.break {
+    padding: 10px;
+}
+.container {
+    top padding: 5px;
+}
+
+#name {
+    font-size: 40px;
+}
+
+#source {
+    padding: 0px;
+    margin:3px;
+    font-size: 10px;
+    
+}
+
+.header {
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+
+p {
+    top padding: 5px;
+}
+
+p 
