@@ -5,43 +5,48 @@
     <meta charset="utf-8">
     <title>Introductions: Compsci 290 Project 1</title>
     <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300" rel="stylesheet">
+
   </head>
     
   <body>
       <!---------------------------Header----------------------------->
       <header>
         <div class="container">
-            <img src="styles/images/photoofme2.jpg" alt="Picture of Myself" height=400>
-            <h1 id="name">Hi, I'm Michelle.</h1>          
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Work</a></li>
+                    <li><a href="#">Play</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <img src="styles/images/photoofme2.jpg" alt="Picture of Myself">
+            <h1 id="name">Hi, I'm Michelle.</h1> 
         </div>
       </header>
       
-      <hr align="center">
+      <section>
+        <div class="container">
+          <p id="subtitle">I believe that just a few simple words can excite us, comfort us, motivate us, and brighten our day, and it's our abilities to feel and to be vulnerable that make us human. I am fascinated by <strong>design thinking, the user experience, and human-centered innovation. </strong> </p>
+          </div>
+      </section>
     
       <!-----------------------Some Basics---------------------------->
       <section>
         <div class="container">
-            <h3 class="header">Some Basics </h3>
-            <p id="bio"> I'm from <strong> Frisco, Texas</strong>. No, we don't ride horses to school. Yes, I've seen snow. <br>
+          <div id=basics>
+                <h3 class="title">Some Basics </h3>
+                <p id="bio"> I'm from <strong> Frisco, Texas</strong>. No, we don't ride horses to school. Yes, I've seen snow. <br>
                 I'm currently a sophomore <strong> (Class of 2020) </strong> at Duke University pursuing a double major in <strong> Computer Science and Economics</strong> and a minor in Visual Media Studies. I'm interested in the intersection between design and technology.</p>
-            <p id="bio">I believe that just a few simple words can excite us, comfort us, motivate us, and brighten our day, and it's our abilities to feel and to be vulnerable that make us human. I am fascinated by <strong>design thinking, the user experience, and human-centered innovation. </strong> Through design and technology, I constantly find ways to excite, comfort, motivate, and brighten a person’s day.</p>
           </div>
-      </section>
-    
-      <!------------------------CS autobiography----------------------->
-      <section>
-        <div class="container">
-            <h3 class="header">My CS Story</h3>
-            <p class="p1"> I'd like to say I remember my first interaction with a computer, but truth be told, I have a really bad memory. I probably consistenly began using the computer at age 7 when I began Kindergarten, and I do remember being obsessed with a Clifford the Big Red Dog computer game. I've since come a long way from Clifford, and I now use the computer for everything and anything, whether it be messaging a friend, watching Netflix, or coding a website (as I am now).</p>
-            <p class="p1"> Having two software engineers as parents, I’ve always been determined to not follow in my parents' footsteps. I didn’t believe I fit the image of a computer scientist I had built in my head from the observations I had made at all the annual "bring your child to work" days. For me it lacked the excitement, diversity, creativity, and people interaction I craved. However, my beliefs changed when I took my first computer science class freshman year. I came to understand that computer science is much more than just robotically coding. It’s interpreting the world around you, being creative, and solving problems. It’s turning an idea in your head into something tangible. I’ve discovered a whole community of people driven by visions of how they hope to use technology to change the world around them. Specifically, I’ve found computer science to be a way for me to apply my love for creative thinking and design to address issues I’ve experienced or seen in day to day life.</p>
-            <p class="p1">I chose to take this class because I want to be able to develop my designs and bring them to life. I've always appreciated beautifully designed websites, and I want to learn to create my own. In the future, I hope to use the computer as a tool to design and build products with tangible impact.</p>
         </div>
       </section>
-      
-      <!---------------------------Things I Like------------------------>
-      <section>
+    
+      <!---------------------------Cold Hard Facts------------------------>
+      <section id=cold>
         <div class="container">
-            <h3 class="header"> The Cold Hard Facts</h3>
+            <h3 class="title"> Cold Hard Facts</h3>
             <ol>
                 <li>I can spend a whole entire day in a thrift store.</li>
                 <li>I collect rocks from places around the world. Rocks make for great inexpensive souvenirs.</li>
@@ -55,10 +60,20 @@
         </div>
       </section>
       
+      <!------------------------CS autobiography----------------------->
+      <section>
+        <div class="container">
+            <h3 class="title">My CS Story</h3>
+            <p class="p1"> I'd like to say I remember my first interaction with a computer, but truth be told, I have a really bad memory. I probably consistenly began using the computer at age 7 when I began Kindergarten, and I do remember being obsessed with a Clifford the Big Red Dog computer game. I've since come a long way from Clifford, and I now use the computer for everything and anything, whether it be messaging a friend, watching Netflix, or coding a website (as I am now).</p>
+            <p class="p1"> Having two software engineers as parents, I’ve always been determined to not follow in my parents' footsteps. I didn’t believe I fit the image of a computer scientist I had built in my head from the observations I had made at all the annual "bring your child to work" days. For me it lacked the excitement, diversity, creativity, and people interaction I craved. However, my beliefs changed when I took my first computer science class freshman year. I came to understand that computer science is much more than just robotically coding. It’s interpreting the world around you, being creative, and solving problems. It’s turning an idea in your head into something tangible. I’ve discovered a whole community of people driven by visions of how they hope to use technology to change the world around them. Specifically, I’ve found computer science to be a way for me to apply my love for creative thinking and design to address issues I’ve experienced or seen in day to day life.</p>
+            <p class="p1">I chose to take this class because I want to be able to develop my designs and bring them to life. I've always appreciated beautifully designed websites, and I want to learn to create my own. In the future, I hope to use the computer as a tool to design and build products with tangible impact.</p>
+        </div>
+      </section>
+      
       <!-----------------------------links------------------------------->
       <section> 
         <div class="container">
-            <h3 class="header">Useful Links</h3>
+            <h3 class="title">Useful Links</h3>
             <a href="https://www2.cs.duke.edu/courses/compsci290.2/spring17/"> Compsci 290: Spring 2018</a> <br>
             <ul>
                 <li>Examples of Good Web Design</li>
@@ -76,12 +91,10 @@
                         <li><strong><a href="https://www.youtube.com/watch?v=gqOEoUR5RHg">Bootstrap Video Tutorial</a></strong></li>
                         <li><strong><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide">Mozilla's Javascript Guide </a></strong></li>
                     </ul>
-                <footer>
-                
-                </footer>
-          </div>
+            </ul>
+        </div>
     </section>
-      
+          
       
   </body>
 </html>
