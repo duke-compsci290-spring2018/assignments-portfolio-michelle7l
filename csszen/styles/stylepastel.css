@@ -1,0 +1,224 @@
+
+html {
+	margin: 9%;
+	padding: 0;
+    animation: backgroundcolor infinite 20s;
+	}
+
+
+@keyframes backgroundcolor{
+    0%
+    {
+        background:#4286f4 ;
+    }
+    20%
+    {
+        background:#b5fce6 ;
+    }
+    40%
+    {
+        background:#35d5e0 ;
+    }
+    60%
+    {
+        background:#d099ef ;
+    }
+    80%
+    {
+        background:#f4b0e5 ;
+    }
+    
+    100%
+    {
+        background:#4286f4 ;
+    }
+}
+
+body { 
+	line-height: 1.5; 
+	margin: 0; 
+	padding: 0;
+	}
+
+p { 
+    text-align: center
+    line-height: 1.2;
+	}
+p:nth-child(even){
+    background-color:pink;
+    }
+
+p:nth-child(odd){
+    border-bottom: 7px;
+    background-color: aquamarine;
+}
+
+h3 { 
+	letter-spacing: 1px; 
+	margin-bottom: 0; 
+	color: #7D775C;
+	}
+
+a:link { 
+	text-decoration: none;
+    color: darkgoldenrod;
+	}
+
+a:visited { 
+	text-decoration: none;
+    color: darkgoldenrod;
+	}
+
+a:hover, a:focus, a:active { 
+	text-decoration: bold; 
+	color: #9685BA;
+	}
+
+.page-wrapper { 
+    padding: 5%;
+	margin: 0; 
+	position: relative;
+    background: white;
+    opacity: .90;
+	}
+
+.intro h1 {
+    font-size: 70px; 
+    font-family: fantasy;
+    text-align: center;
+    color: rosybrown;
+    margin-bottom: 0;
+}
+
+.intro h1:hover {
+    font-size: 70px;
+    font-family: serif;
+    color: red;
+}
+
+h2{
+    font-family: fantasy;
+    text-align: center;
+}
+
+.summary p{
+    padding:0;
+    background: white;
+    font-size: 30px; 
+    text-align: center;
+}
+
+.summary p:last-child{
+    background-color: mediumaquamarine;
+    color: white;
+}
+
+.summary {
+    margin-right: 110px;
+}
+
+.preamble p{
+    padding:0;
+    background-color: transparent;
+    font-size: 20px;
+
+}
+
+.preamble h3{
+    text-align: left;
+    font-size: 30px;
+    color: white;
+}
+
+.preamble {
+    background-color: indianred;
+    padding: 20px 50px 40px 50px;
+    margin-right: 110px;
+    color:white;
+}
+
+.preamble:hover {
+    background-color:darkblue;
+}
+
+
+#zen-supporting{
+    margin-right:110px
+}
+
+#zen-supporting p{
+    padding: 3%;
+}
+
+#zen-supporting p:hover{
+    background-color:darkgrey;
+    
+}
+
+.design-selection{
+    padding: 30px;
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: lightcyan; 
+}
+
+h3{
+    text-align: center;
+    font-size: 30px;
+    color: lightcoral;
+    font-family: cursive;
+}
+
+.design-archives {
+    position:fixed;
+    top:0;
+    background-image:url(wood.jpg);
+    padding: 10px 20px 20px 20px;
+    margin:0;
+}
+
+.design-archives h3{
+    color:white;
+}
+
+.design-archives a{
+    color:white;
+}
+
+.design-archives ul{
+    list-style:none;
+    margin-left:-20px;
+}
+
+.zen-resources ul{
+    list-style: none; 
+    
+}
+
+
+.zen-resources h3{
+    font-family: sans-serif;
+    text-align: left;
+    font-size: 20px;
+    
+}
+
+.zen-resources a{
+    color:black
+}
+
+.zen-resources a:hover{
+    color:orangered
+}
+
+
+.zen-resources {
+    background-color: bisque;
+    margin:50px -180px -200px;
+    padding: 20px 25px 25px 100px;
+    font-size: 80%;
+    
+}
