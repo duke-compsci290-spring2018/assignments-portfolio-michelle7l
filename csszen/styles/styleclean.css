@@ -56,7 +56,7 @@ h2:hover {
     background-color: white;
     padding: 30px;
     border: 7px dotted firebrick;
-    height: 400px;
+    min-height: 400px;
     float:left;
     margin-right: 22px;
     margin-bottom: 30px;
@@ -67,7 +67,7 @@ h2:hover {
     padding: 30px;
     background-color: white;
     border: 7px dotted purple;
-    height: 400px;
+    min-height: 400px;
     float:left;
     margin-left: 22px;
 }
@@ -157,7 +157,7 @@ footer {
 
 .design-archives ul{
     list-style: none;
-    margin-left: 40px;
+    margin-left: 2%;
     
 }
 
