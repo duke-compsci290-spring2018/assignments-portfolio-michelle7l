@@ -144,5 +144,53 @@ footer {
     display:inline-block;
 }
 
+.select {
+    color: coral;
+    text-align: center;
+    margin-top: 50px;
+    font-family: cursive;
+    font-size: 40px;
+    margin-bottom: 0;
+    
+}
 
+
+.design-archives ul{
+    list-style: none;
+    margin-left: 40px;
+    
+}
+
+.design-archives {
+    width: 20%;
+    position:fixed;
+    top: 400px;
+    right:0;
+    padding: 10px;
+    background-color: white;
+    border:3px black solid;
+}
+
+
+.zen-resources {
+    width: 20%;
+    position:fixed;
+    top: 80px;
+    left:0;
+    padding: 10px;
+    background-color: white;
+    border:3px black solid;
+}
+
+.zen-resources ul {
+    list-style: none;
+}
+
+h3 {
+    text-align: center;
+}
+
+h3:hover {
+    color:coral;
+}
 
