@@ -38,6 +38,10 @@ time {
     text-transform: uppercase;
 }
 
+a{
+    color:black;
+}
+
 .site-header {
     margin:3%;
 }
@@ -99,49 +103,48 @@ img {
     margin-left:-5%;
 }
 
+/*size xs: background color change to whitesmoke, site logo is set to width 30% and margins are adjusted to center the logo */
 @media (max-width: 575px) {  
     body {background-color:whitesmoke;}
-    a {color:black;}
     .site-title {
         margin:3%;
     }
     .site-logo {
-        width:50%;
-        margin: 0 25%;
+        width:30%;
+        margin: 0 35%;
     }
 }
 
+/*size sm: background color change to green, site logo is set to width 30% and margins are adjusted to center the logo */
 @media (min-width: 576px) and (max-width: 767px) {
     body {background-color:#e8fff6;}
-    a {color:black;}
     .site-title {
         margin:3%;
     }
     .site-logo {
-        width:50%;
-        margin: 0 25%;
+        width:30%;
+        margin: 0 35%;
     }
 }
+
+/*size md: background color change to blue */
 @media (min-width: 768px) and (max-width: 991px) {
     body {background-color:#e8faff;}
-    a {color:black;}
     .site-title {
-        font-family: 'Quattrocento Sans', sans-serif;
-        font-weight: bold;
-        color: #fd8204;
-        text-align: center;
-        text-align: center;
-        text-align: center;
-        font-size: 200%;
         margin-top: 39%;
     }   
 }
+/*size lg: background color change to purple */
 @media (min-width: 992px) and (max-width: 1199px) {
     body {background-color:#e8f0ff;}
-    a {color:black;}
 }
 
+/*size xl: background color change to orange */
 @media (min-width: 1200px) {
     body {background-color:floralwhite;}
     a {color:black;}
 }
+
+/* Additional responsive changes in the header: d-none hides the navigation menu at size xs and s, d-md-block makes it reappear for md, lg, and xl, col-md-12 shifts the navigation menu to below the site logo and title for md, col-lg-7 shifts the navigation menu so that it is inline with the site logo and title for lg and xl */
+
+/* Additional responsive changes in the body: lg and xl have a three column layout, md and sm have a two column layout, xs has a one column layout */
