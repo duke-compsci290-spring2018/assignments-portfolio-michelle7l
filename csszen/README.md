@@ -15,7 +15,7 @@ In the Select a Design section, I changed the font, cleared the list style, and 
 
 The Archives and Resources menu are both fixed. I've also moved the footer to the top using display:absolute. 
 
-#information
+# information
 Name: Michelle Li
 NetID: mjl74
 Began project on: 01/29/2018
