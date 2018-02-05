@@ -1,0 +1,147 @@
+
+
+body {
+    padding-right: 0;
+}
+
+
+ul {
+    text-decoration: none;
+    list-style: none;
+}
+
+.site-nav li {
+    font-size: 90%;
+   
+}
+
+.site-nav a {
+    color: darkgrey;
+}
+
+.site-nav a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.site-nav {
+    margin-top: 4%;
+     
+}
+
+li {
+    display: inline;
+    margin: 5px;
+}
+
+time {
+    text-transform: uppercase;
+}
+
+.site-header {
+    margin:3%;
+}
+
+.site-title {
+    font-family: 'Quattrocento Sans', sans-serif;
+    font-weight: bold;
+    color: #fd8204;
+    text-align: center;
+    text-align: center;
+    text-align: center;
+    font-size: 200%;
+    margin-top: 13%;
+}
+
+.site-nav-title {
+    display:none;
+}
+
+.entry-title {
+    font-family: 'Quattrocento Sans', sans-serif;
+}
+
+p{
+    font-family: 'Quattrocento Sans', sans-serif;
+}
+
+.no-padding {
+    padding: 5;
+}
+
+.layout-entry {
+    padding: 5%;
+}
+
+.entry-meta-item time {
+    font-size: 5%;
+    
+}
+img {
+    width: 100%;
+    height: auto;
+}
+
+.thumbnail {
+    max-width:100%;
+}
+
+.imgContainer {
+    height: 300px;
+}
+
+.site-footer {
+    text-align: center;
+    margin: 5%
+}
+
+.site-social {
+    margin-left:-5%;
+}
+
+@media (max-width: 575px) {  
+    body {background-color:whitesmoke;}
+    a {color:black;}
+    .site-title {
+        margin:3%;
+    }
+    .site-logo {
+        width:50%;
+        margin: 0 25%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    body {background-color:#e8fff6;}
+    a {color:black;}
+    .site-title {
+        margin:3%;
+    }
+    .site-logo {
+        width:50%;
+        margin: 0 25%;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    body {background-color:#e8faff;}
+    a {color:black;}
+    .site-title {
+        font-family: 'Quattrocento Sans', sans-serif;
+        font-weight: bold;
+        color: #fd8204;
+        text-align: center;
+        text-align: center;
+        text-align: center;
+        font-size: 200%;
+        margin-top: 39%;
+    }   
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    body {background-color:#e8f0ff;}
+    a {color:black;}
+}
+
+@media (min-width: 1200px) {
+    body {background-color:floralwhite;}
+    a {color:black;}
+}
