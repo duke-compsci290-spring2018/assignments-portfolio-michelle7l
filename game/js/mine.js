@@ -107,7 +107,7 @@ function draw() {
     
     else if(y + dy > canvas.height-ball) { //if ball hits bottom wall
         gameOver();
-        setTimeout("location.reload();",500);
+        setTimeout("location.reload();",300);
     }
     
     x += dx;
