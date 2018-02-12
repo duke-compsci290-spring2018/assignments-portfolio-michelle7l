@@ -107,6 +107,7 @@ function draw() {
     
     else if(y + dy > canvas.height-ball) { //if ball hits bottom wall
         gameOver();
+        setTimeout("location.reload();",500);
     }
     
     x += dx;
@@ -186,7 +187,6 @@ function gameOver() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.textAlign = 'center';
     ctx.fillText('GAME OVER', 240 , 130); // text and position
-    setTimeout(location.reload(), 400);
 }
 
 function handleMouseClick(){
@@ -196,7 +196,6 @@ function handleMouseClick(){
 
 function drawStart() {
     if(showStart == true){
-      ctx.font = "120px";
       ctx.fillStyle = "#666666";
       ctx.fillText("CLICK TO START", 200, 130);
     }
@@ -205,3 +204,46 @@ function drawStart() {
 
 drawStart();
 canvas.addEventListener('mousedown', handleMouseClick);
+
+// a key map of allowed keys
+var allowedKeys = {
+  37: 'left',
+  38: 'up',
+  39: 'right',
+  40: 'down',
+};
+
+// the 'official' Konami Code sequence
+var konamiCode = ['left', 'right', 'up', 'down'];
+
+// a variable to remember the 'position' the user has reached so far.
+var konamiCodePosition = 0;
+
+// add keydown event listener
+document.addEventListener('keydown', function(e) {
+  // get the value of the key code from the key map
+  var key = allowedKeys[e.keyCode];
+  // get the value of the required key from the konami code
+  var requiredKey = konamiCode[konamiCodePosition];
+
+  // compare the key with the required key
+  if (key == requiredKey) {
+
+    // move to the next key in the konami code sequence
+    konamiCodePosition++;
+
+    // if the last key is reached, activate cheats
+    if (konamiCodePosition == konamiCode.length) {
+      activateCheats();
+      konamiCodePosition = 0;
+    }
+  } else {
+    konamiCodePosition = 0;
+  }
+});
+
+function activateCheats() {
+    score=brickCol*brickRows;
+    alert("YOU WIN, CONGRATS!");
+    location.reload();
+}
