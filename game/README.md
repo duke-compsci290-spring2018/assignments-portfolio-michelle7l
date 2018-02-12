@@ -1,5 +1,5 @@
 # Game
-A game of brick breaker created using javascript. Cheatcode: left arrow, right arrow, up arrow, down arrow  
+A game of brick breaker created using javascript. Cheatcode to win game: left arrow, right arrow, up arrow, down arrow  
 
 # Information
 Name: Michelle Li
@@ -20,3 +20,5 @@ Resources I used:
 Assets (code, images, or sounds) I used:
 Javascript: [Mozilla Breakout Tutorial](https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript)
 [Konami Code](https://stackoverflow.com/questions/31626852/how-to-add-konami-code-in-a-website-based-on-html)
+
+License: This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.

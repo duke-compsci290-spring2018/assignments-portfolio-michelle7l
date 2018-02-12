@@ -9,8 +9,8 @@ var y = canvas.height - 30;
 var color = "#faebd7"
 var showStart = true;
 
-var dx = 1;
-var dy = -1;
+var dx = 2;
+var dy = -2;
 
 var paddleH = 10;
 var paddleW = 75;
