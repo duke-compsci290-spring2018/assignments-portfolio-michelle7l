@@ -1,13 +1,23 @@
-
-
-$(document).ready(function() {
+$(document).ready(function() { 
+    //read json file
     $.getJSON("js/images.json", function(data) {
+        //create image gallery
         $.each(data.images, function(key,v) {
             output=$("#gallery").append('<div class="col-md-4 ' + v.category + '"><a href="#" class="pop"><img id="myImg" class="img-responsive imgStyle" src="' + v.url + '" alt="' + v.caption + '"/></a></div>');
         });
+        
+        //create array of categories
+        var categories = [];
+        for (var i = 0; i<data.images.length; i++) {
+            var item = data.images[i];
+            var category = item.category;
+            if (($.inArray(category, categories) == -1))          categories.push(category);
+         };
     });
     
-  $('.prev').on('click', function(){
+    
+    //slider to work
+  $('.prev').on('click', function(){ 
     var prevImg = $('img.active').prev('.slider-inner img');
     if(prevImg.length == 0) {
       prevImg = $('.slider-inner img:last');
@@ -25,9 +35,7 @@ $(document).ready(function() {
     nextImg.addClass('active');
   });
     
-    
-  
-    
+    //checkboxes that hide and show the respective categories
     $('#filter-dogs').change(function(){
         if ($('#filter-dogs').is(':checked')){
             $('.dogs').show();        }
@@ -52,7 +60,7 @@ $(document).ready(function() {
         }
     });
     
-    
+    //slideshow images connected to checkboxes
     $("#dogpic").click(function(){
         $('#filter-dogs').prop( "checked", true );
         $('.dogs').show(); 
@@ -80,12 +88,11 @@ $(document).ready(function() {
         $('.eats').hide(); 
     });
     
-    
-    $('#gallery').on('click','#myImg',function(){
+    //image pop up with caption when clicked on 
+    $('#gallery').on('click','img',function(){
         $('#myModal').css("display","block");
-        $("#img01").src=$(this).src
-        $("#caption").html($(this).alt);
-
+        $("#img01").attr("src", this.src);
+        $("#caption").html('<p>'+this.alt+'</p>');
     });
 
     $('.close').on("click",function() { 
