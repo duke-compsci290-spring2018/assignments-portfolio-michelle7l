@@ -154,11 +154,12 @@ li {
     position: absolute;
     top: 15px;
     right: 35px;
-    font-size: 60px;
+    font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
-    color: #fff; 
-    opacity: .5;
+    color: #fff !important;
+    background-color: white !important;
+    opacity: 1;
 }
 
 
