@@ -150,7 +150,7 @@ li {
     to {transform:scale(1)}
 }
 
-.close {
+.close span{
     position: absolute;
     top: 15px;
     right: 35px;
@@ -160,7 +160,7 @@ li {
     color: #fff; 
     opacity: 1;
 }
-}
+
 
 .close:hover,
 .close:focus {
