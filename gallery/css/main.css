@@ -1,15 +1,33 @@
+
+
+License: This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
+
+
 a{
 	text-decoration: none;
 }
 
 h1{
 	text-align: center;
+    font-size: 80px;
+}
+
+header {
+    margin: 3%;
+    padding-top: 40px;
+}
+
+
+li {
+    display: inline;
 }
 
 .container {
 	width:540px;
-	margin:40px auto;
+	margin: auto;
 	overflow:auto;
+    display: flex;
+    justify-content: center;
 }
 
 .slider-inner{
@@ -19,7 +37,6 @@ h1{
 	overflow:hidden;
 	float:left;
 	padding:3px;
-	border:#666 solid 1px;
 }
 
 .slider-inner img{
@@ -32,6 +49,7 @@ h1{
 	display:inline-block;
 }
 
+/*arrows*/
 .prev,.next{
 	float:left;
 	margin-top:130px;
@@ -51,6 +69,16 @@ h1{
 }
 
 
+/* checkboxes*/
+#filters {
+    margin-top: 20px;
+    text-align: center;
+    padding-right: 60px;
+}
+
+#filters li {
+    padding: 10px;
+}
 
 li {
     list-style: none;
@@ -58,7 +86,7 @@ li {
 
 
 .imgStyle {
-    border-radius: 5px;
+    border-radius: 2px;
     cursor: pointer;
     transition: 0.3s;
     margin-bottom: 10px;
@@ -83,7 +111,7 @@ li {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 30; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -99,6 +127,7 @@ li {
     display: block;
     width: 80%;
     max-width: 700px;
+    max-height: 400px;
 }
 
 #caption {
@@ -126,10 +155,12 @@ li {
     position: absolute;
     top: 15px;
     right: 35px;
-    color: white;
     font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
+    color: #fff; 
+    opacity: 1;
+}
 }
 
 .close:hover,
@@ -137,6 +168,13 @@ li {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
 }
 
 .eats, .dogs, .dance {
