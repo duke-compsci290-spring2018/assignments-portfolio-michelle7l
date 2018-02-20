@@ -1,4 +1,5 @@
 
+/* This file is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.*/
 
 body {
     padding-right: 0;
@@ -148,3 +149,5 @@ img {
 /* Additional responsive changes in the header: d-none hides the navigation menu at size xs and s, d-md-block makes it reappear for md, lg, and xl, col-md-12 shifts the navigation menu to below the site logo and title for md, col-lg-7 shifts the navigation menu so that it is inline with the site logo and title for lg and xl */
 
 /* Additional responsive changes in the body: lg and xl have a three column layout, md and sm have a two column layout, xs has a one column layout */
+
+

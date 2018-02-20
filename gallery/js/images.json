@@ -1,0 +1,127 @@
+{
+    "images": [{
+        "url": "images/food/food1.jpg", 
+        "caption": "Supreme pizza",
+        "category": "eats"
+    },
+    {
+        "url": "images/food/food2.jpg", 
+        "caption": "Avocado and egg salad",
+        "category": "eats"
+    },
+    {
+        "url": "images/food/food3.jpg", 
+        "caption": "Fruit Parfait",
+        "category": "eats"
+    },
+    {
+        "url": "images/food/food4.jpg", 
+        "caption": "Ramen",
+        "category": "eats"
+    },
+    {
+        "url": "images/food/food5.jpg", 
+        "caption": "Dumplings",
+        "category": "eats"
+    },
+    {
+        "url": "images/food/food6.jpg", 
+        "caption": "Mediterranean Medley",
+        "category": "eats"
+    },
+    {
+        "url": "images/food/food7.jpg", 
+        "caption": "Nachos",
+        "category": "eats"
+    },
+    {
+        "url": "images/food/food8.jpg", 
+        "caption": "Acai bowl",
+        "category": "eats"
+    },
+    {
+        "url": "images/food/food9.jpg", 
+        "caption": "Salmon toast",
+        "category": "eats"
+    },
+    {
+        "url": "images/food/food10.jpg", 
+        "caption": "Veggie platter",
+        "category": "eats"
+    },
+    {
+        "url": "images/dog/dog1.jpg", 
+        "caption": "Adorable bulldog",
+        "category": "dogs"
+    },
+    {
+        "url": "images/dog/dog2.jpg", 
+        "caption": "Bear",
+        "category": "dogs"
+    },
+    {
+        "url": "images/dog/dog3.jpg", 
+        "caption": "Award for best puppy dog eyes",
+        "category": "dogs"
+    },
+    {
+        "url": "images/dog/dog4.jpg", 
+        "caption": "Oreo",
+        "category": "dogs"
+    },
+    {
+        "url": "images/dog/dog5.jpg", 
+        "caption": "Horhay the weinder dog",
+        "category": "dogs"
+    },
+    {
+        "url": "images/dog/dog6.jpg", 
+        "caption": "Potato",
+        "category": "dogs"
+    },
+    {
+        "url": "images/dog/dog7.jpg", 
+        "caption": "I LOVE PUGS",
+        "category": "dogs"
+    },
+    {
+        "url": "images/dog/dog8.jpg", 
+        "caption": "Hats off to ya",
+        "category": "dogs"
+    },
+    {
+        "url": "images/dance/dance1.jpg", 
+        "caption": "Passion",
+        "category": "dance"
+    },
+    {
+        "url": "images/dance/dance2.jpg", 
+        "caption": "Friendship",
+        "category": "dance"
+    },
+    {
+        "url": "images/dance/dance3.jpg", 
+        "caption": "Innocence",
+        "category": "dance"
+    },
+    {
+        "url": "images/dance/dance4.jpg", 
+        "caption": "Emotion",
+        "category": "dance"
+    },
+    {
+        "url": "images/dance/dance5.jpg", 
+        "caption": "Freedom",
+        "category": "dance"
+    },
+    {
+        "url": "images/dance/dance6.jpg", 
+        "caption": "Expression",
+        "category": "dance"
+    },
+    {
+        "url": "images/dance/dance7.jpg", 
+        "caption": "Precision",
+        "category": "dance"
+  }]
+}

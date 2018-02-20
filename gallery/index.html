@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="gallery" content="interactive">
+    <link rel="stylesheet" href="css/main.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="js/gallery.js"></script>
+    <title>Dynamic Interative Image Gallery</title>
+</head>
+
+<body>
+        <div class="container">
+            <div id="slider-outer">
+                <img src="css/images/arrow-left.png" class="prev" alt="Prev">
+                    <div class="slider-inner">
+                        <img id="dogpic" src="images/dog/dog6.jpg" class="active">
+                        <img id="eatspic" src="images/food/food2.jpg">
+                        <img id="dancepic" src="images/dance/dance7.jpg">
+                    </div>
+                <img src="css/images/arrow-right.png" class="next" alt="Next">
+            </div>
+        </div>
+        
+    <!--checkboxes-->
+        <ul id="filters">
+            <li>
+                <input type="checkbox" value="dogs" name="filter-dogs" id="filter-dogs" />
+                <label for="filter-dogs">Dogs</label>
+            </li>
+            <li>
+                <input type="checkbox" value="eats" id="filter-eats" />
+                <label for="filter-eats">Eats</label>
+            </li>
+            <li>
+                <input type="checkbox" value="dance" id="filter-dance" />
+                <label for="filter-dance">Dance</label>
+            </li>
+        </ul>
+        
+        <div class="container">    
+            <div class="row" id="gallery">
+                
+            </div>
+        </div>
+    <!--Modal-->
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+</body>
+</html>
+
+<!--License: This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.-->
