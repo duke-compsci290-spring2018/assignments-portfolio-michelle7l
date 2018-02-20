@@ -150,15 +150,15 @@ li {
     to {transform:scale(1)}
 }
 
-.close span{
+.close {
     position: absolute;
     top: 15px;
     right: 35px;
-    font-size: 40px;
+    font-size: 60px;
     font-weight: bold;
     transition: 0.3s;
     color: #fff; 
-    opacity: 1;
+    opacity: .5;
 }
 
 
@@ -167,6 +167,7 @@ li {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
+    opacity: 1;
 }
 
 /* 100% Image Width on Smaller Screens */
