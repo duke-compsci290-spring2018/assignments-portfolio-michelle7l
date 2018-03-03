@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="trello" content="trello">
+    <link rel="stylesheet" href="css/main.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <!-- fonts-->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Pavanam|Roboto|Source+Sans+Pro:300,400|Vidaloka" rel="stylesheet">
+
+    <title>Michello</title>
+</head>
+
+<body>
+    <div id="app">
+    <div id="span" v-bind:style="background">
+    <header>
+    <button class="sidebarOpen" @click="sidebar=!sidebar">Menu</button>
+    <h1>michello</h1>
+     </header>
+    
+
+    <!--button bar-->
+    <div class="container add">
+        <input @keyup.enter="addList" class="nameList" v-model="newList">
+        <button class="addB" @click="addList">Add List</button>
+    </div>
+    
+    <!--list section-->
+    <div class="container">
+           <div class="row" v-for="i in rowCount">
+              <div v-for="list in listsCountInRow(i)" class="col-md-4">
+                <div class="listContainer">
+                    <a href="#" class="destroy" @click="removeList(list)"></a>
+                      <h1 @click="editItem(list)" v-if="!list.edit">{{ list.name }}</h1>
+                        <input class="edit" type="text"
+                              v-model="list.name"
+                              v-if="list.edit"
+                              ref='search'
+                              v-focus
+                              @blur="doneEdit(list)"
+                              @keyup.enter="doneEdit(list)">
+                            <div v-for="card in list.cards">
+                                <div v-if="!list.collapsed" @click="card.showModal=true" id="card">
+                                    <span @click="editItem(card)" v-if="!card.edit">{{ card.name }}</span>
+                                    <input class="edit" type="text"
+                                      v-model="card.name"
+                                      v-if="card.edit"
+                                      ref='search'
+                                      v-focus
+                                      @blur="doneEdit(card)"
+                                      @keyup.enter="doneEdit(card)">
+                                    <a href="#" class="destroyCard" @click="removeCard(card,list)"></a>
+                                </div>
+                            </div>
+                        <div v-if="!list.collapsed" class="addCardDiv">
+                        <input placeholder=" todo" @keyup.enter="addCard(list)" class="nameCard" v-model="list.newCard"> 
+                        <button class="addC" @click="addCard(list)">Add</button>
+                        </div>
+                        <div class="collapseList" @click="list.collapsed=!list.collapsed"><i v-if="!list.collapsed" class="arrow up"></i><i v-if="list.collapsed" class="arrow down"></i></div>    
+                </div>
+               </div>
+        </div>
+    </div>
+        <!--sidebar-->
+        <div class="sidebar" v-if="sidebar">
+            <h1>Menu</h1>
+            <hr>
+            <a href="#" class="destroySidebar" @click="sidebar=!sidebar"></a>
+            <div class="sidebarContent">
+            <div class="changeBC" @click="backgroundColorChanger=!backgroundColorChanger">Change Background Color</div>
+                <div class="backgroundColorDiv" v-if="backgroundColorChanger">
+                <input type="text" v-on:input="background.backgroundColor = $event.target.value"/>
+                </div>
+                <hr>
+            </div>
+        </div>
+        
+        <!--modal for cards-->
+        <div v-for="list in lists">
+            <div v-for="card in list.cards">
+            <div v-if="card.showModal" class="card">
+                <a href="#" class="destroyCardModal" @click="card.showModal=!card.showModal"></a>
+                <h1>{{ card.name }}</h1>
+            </div>
+            </div>
+        </div>
+        
+        
+        </div>
+        </div>
+        <script src="js/trello.js"></script>
+
+</body>
+</html>
+
+<!--License: This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.-->
