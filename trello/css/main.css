@@ -6,6 +6,17 @@ body {
 }
 
 
+#files {
+    text-align: center;
+    margin: auto;
+    width:174px;
+}
+
+.signUp {
+    margin: 10px;
+}
+
+
 header {
     padding: 20px;
     padding-top: 40px;
@@ -50,6 +61,7 @@ header h1{
 .fa-user {
     margin-right: 5px;
 }
+
 .sidebarOpen:hover {
     border-bottom: solid 1px grey;
     color: grey;
@@ -74,6 +86,31 @@ header h1{
 
 }
 
+.userInput {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    border-bottom: 1px solid lightgray;
+}
+
+.emailDiv {
+    margin-left: 26px;
+}
+.email {
+    display:inline-block;
+    margin: 5px;
+    
+}
+
+.username {
+    display:inline-block;
+    margin: 5px;
+}
+
+.profpicDiv {
+    margin: 10px;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -85,7 +122,8 @@ header h1{
     min-width: 300px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
-    z-index: 1;
+    z-index: 30;
+    background: white;
 }
 
 .listContainer {

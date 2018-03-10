@@ -47,10 +47,18 @@
                         </div>
                     </div>
                     <div class="more dropdown">
-                        <a href="#" class="sidebarOpen" @click="user=!user"> <i class="fas fa-user"></i>Login</a>
+                        <a href="#" class="sidebarOpen" @click="user=!user"> <i class="fas fa-user"></i>Sign Up</a>
                         <div class="dropdownContent" v-if="user">
                             <div class="userSignIn">
-                                
+                                <h4>Sign Up</h4>
+                                <div><p class="username">Username:</p><input class="username userInput"></div>
+                                <div class="emailDiv"><p class="email">Email:</p><input class="email userInput"></div>
+                                <div class="profpicDiv"><p class="profpic">Upload a profile picture!</p>
+                                <form class="imageForm">
+                                    <input type="file" id="files" name="files[]" />
+                                </form>
+                                </div>
+                                <button class="signUp">Sign Up</button>
                             </div> 
                         </div>
                     </div>
