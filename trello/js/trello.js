@@ -1,4 +1,20 @@
 
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBi8I0dLS4kE6xASb6nMfFMcqGjygXK69E",
+    authDomain: "trello-b76e3.firebaseapp.com",
+    databaseURL: "https://trello-b76e3.firebaseio.com",
+    projectId: "trello-b76e3",
+    storageBucket: "trello-b76e3.appspot.com",
+    messagingSenderId: "486409222791"
+  };
+var db =  firebase.initializeApp(config).database();
+// global reference to remote data
+var listsref = db.ref('lists');
+var backgroundref = db.ref('background');
+// connect Firebase to Vue
+Vue.use(VueFire);
+
 //focusing
  const focus = {
     inserted(el) {
@@ -11,37 +27,21 @@ var app = new Vue({
     //initial state
     el: '#app',
     data: {
-        lists: [
-            {
-                name: 'todo list 1',
-                cards:[],
-                newCard: '',
-                edit: false,
-                collapsed: false
-            },
-            {
-                name: 'todo list 2',
-                cards:[],
-                newCard: '',
-                edit: false,
-                collapsed: false
-            },
-            {
-                name: 'todo list 3',
-                cards:[],
-                newCard: '',
-                edit: false,
-                collapsed: false,
-            }
-    
-                    ],
+        //lists:[],
         newList: '',
         listsPerRow: 3,
         sidebar: false,
         backgroundColorChanger: false,
-        background: {
-			backgroundColor: ''
-		}
+        addLists: false,
+        user: false
+        //background: {
+			//backgroundColor: ''
+		//}
+    },
+    firebase: {
+        lists: listsref,
+        background: backgroundref
+    
     },
     
     computed: {
@@ -54,14 +54,14 @@ var app = new Vue({
         addList ()  { //adds a list
             this.newList = this.newList.trim();
             if (this.newList) {
-                this.lists.push({
+                listsref.push({
                     name: this.newList,
                     cards: [],
                     newCard: '',
                     edit: false,
-                    collapsed: false
-                })
-                // text input displays this value, so clear it to indicate ready to type a new one
+                    collapsed: false,
+                    date: ''
+                }).then((data,err) => {if(err) {console.log(err)}});
                 this.newList = '';
             }
         },
@@ -69,29 +69,30 @@ var app = new Vue({
             return this.lists.slice((index - 1) * this.listsPerRow, index * this.listsPerRow)
         },
         addCard (list) { //adds a card to a list
-            list.newCard = list.newCard.trim();
             if (list.newCard) {
-                list.cards.push({
+                listsref.child(list['.key']).child('cards').push({
                     name: list.newCard,
                     edit: false,
                     showModal: false
                 })
-                list.newCard = '';
+                list.newCard=''
             }
         },
-        editItem (item) { //call to edit a text field
-            item.edit = true;
+        editItem (list) { //call to edit a text field
+            listsref.child(list['.key']).update({edit:true});
+        },
+        saveEdit (list) { //call when finished editing
+            listsref.child(list['.key']).update({name:list.name, edit:false});
         },
         
-        doneEdit (item) { //call when finished editing
-            item.edit = false;
-        },
         removeList (list) { //removes a list
-            this.lists.splice(this.lists.indexOf(list), 1)
+            listsref.child(list['.key']).remove();
         },
+        
         removeCard (card, list) { //removes a card
-            list.cards.splice(list.cards.indexOf(card), 1)
+            listsref.child(list['.key']).child('cards').remove();
         }
+        
 
     }
 });

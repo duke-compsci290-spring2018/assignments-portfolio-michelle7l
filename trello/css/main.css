@@ -3,21 +3,89 @@ body {
     font-family: 'Pavanam', sans-serif;
     margin: 0;
     padding: 0;
-    
 }
+
 
 header {
     padding: 20px;
     padding-top: 40px;
+    font-family: 'Pavanam', sans-serif;
+    margin: 0;
+}
+
+
+/*nav styling*/
+header h1{
+    font-size: 34px; 
     font-family: 'Vidaloka', serif;
 }
 
-header h1{
-    font-size: 60px; 
+.menu-container {
+    padding: 20px 0;
+    display: flex;
+    justify-content:center;
+    
 }
 
-.add {
-    padding-bottom: 40px;
+.menu {
+    display:flex;
+    width: 900px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.fa-wrench {
+    margin-right: 5px;
+}
+
+.fa-plus {
+    margin-right: 5px;
+}
+
+.fa-user {
+    margin-right: 5px;
+}
+.sidebarOpen:hover {
+    border-bottom: solid 1px grey;
+    color: grey;
+    outline:none; 
+}
+
+.more:focus {
+   outline:none; 
+}
+
+.more a:hover {
+    text-decoration: none; !important
+}
+
+.more a:link {
+    text-decoration: none; !important
+}
+
+.more a{
+    font-size: 17px;
+    margin-left: 15px;
+
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdownContent {
+    position: absolute;
+    margin-top: 30px;
+    min-width: 300px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
 }
 
 .listContainer {
@@ -26,7 +94,6 @@ header h1{
     border: 2px solid black;
     margin: 10px;
     position: relative;
-
 }
 
 .addB {
@@ -47,7 +114,6 @@ header h1{
 
 input {
     font-family: 'Pavanam', sans-serif;
-
 }
 
 .addC {
@@ -81,7 +147,6 @@ input {
 #card:hover {
     background-color: #eadbd7;
     cursor: pointer;
-    
 }
 
 .addCardDiv {
@@ -170,13 +235,13 @@ i {
     z-index: 1;
 }
 
+
 .sidebarOpen {
     float: right;
-    background-color: black;
-    color: white;
+    color: black;
     padding: 5px 10px;
     font-family: 'Pavanam', sans-serif;
-    margin-right: 40px;
+    font-size: 20px;
 }
 
 .sidebar {
@@ -228,7 +293,7 @@ i {
     max-width: 400px;
     max-height: 400px;
     z-index: 15;
-    top: 50%;
+    top: 20%;
     left: 50%;
     margin: -200px 0 0 -200px; 
     padding: 20px;
@@ -257,4 +322,25 @@ i {
     text-decoration: none;
     color: grey;
 }
+
+.editButton {
+    position: absolute;
+    right: 30px;
+    text-decoration: none;
+    top: 9px;
+    background: none;
+    border:none;
+}
+
+button:hover{
+    cursor:pointer;
+}
+button{
+    outline: none !important;
+}
+.edit {
+    font-family: 'Pavanam', sans-serif;
+    max-width: 130px;
+}
+
 /* License: This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.

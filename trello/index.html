@@ -4,35 +4,71 @@
     <meta charset="utf-8">
     <meta name="trello" content="trello">
     <link rel="stylesheet" href="css/main.css">
-    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    
+    
+    <!--libraries needed-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
-    <!-- fonts-->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Pavanam|Roboto|Source+Sans+Pro:300,400|Vidaloka" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vuefire/1.4.5/vuefire.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    
+    <!-- styling -->
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <!-- fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Pavanam|Roboto|Source+Sans+Pro:300,400|Vidaloka" rel="stylesheet">
+    
     <title>Michello</title>
 </head>
-
+    
 <body>
     <div id="app">
     <div id="span" v-bind:style="background">
-    <header>
-    <button class="sidebarOpen" @click="sidebar=!sidebar">Menu</button>
-    <h1>michello</h1>
-     </header>
     
-
-    <!--button bar-->
-    <div class="container add">
-        <input @keyup.enter="addList" class="nameList" v-model="newList">
-        <button class="addB" @click="addList">Add List</button>
-    </div>
+    <header>
+        <div class="menu-container">
+            <div class="menu">
+                <div class="michello">
+                    <h1>michello</h1>
+                </div>
+                <div class="right">
+                    <div class="more">
+                        <a href="#" class="sidebarOpen" @click="addLists=!addLists"> <i class="fas fa-plus"></i>AddList</a>
+                        <div class="dropdownContent" v-if="addLists">
+                            <div class="addListInput">
+                                <input @keyup.enter="addList" class="nameList" v-model="newList">
+                                <button class="addB" @click="addList">Add List</button>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="more dropdown">
+                        <a href="#" class="sidebarOpen" @click="user=!user"> <i class="fas fa-user"></i>Login</a>
+                        <div class="dropdownContent" v-if="user">
+                            <div class="userSignIn">
+                                
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="more">
+                                <a href="#" class="sidebarOpen" @click="sidebar=!sidebar"> <i class="fas fa-wrench"></i>Options</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+        
+    
     
     <!--list section-->
     <div class="container">
            <div class="row" v-for="i in rowCount">
-              <div v-for="list in listsCountInRow(i)" class="col-md-4">
+              <div v-for="(list, listKey) in listsCountInRow(i)" class="col-md-4">
                 <div class="listContainer">
                     <a href="#" class="destroy" @click="removeList(list)"></a>
                       <h1 @click="editItem(list)" v-if="!list.edit">{{ list.name }}</h1>
@@ -41,18 +77,20 @@
                               v-if="list.edit"
                               ref='search'
                               v-focus
-                              @blur="doneEdit(list)"
-                              @keyup.enter="doneEdit(list)">
-                            <div v-for="card in list.cards">
-                                <div v-if="!list.collapsed" @click="card.showModal=true" id="card">
-                                    <span @click="editItem(card)" v-if="!card.edit">{{ card.name }}</span>
+                              @blur="saveEdit(list)"
+                              @keyup.enter="saveEdit(list)">
+                    <!-- iterate through card list-->
+                            <div v-for="(card, cardKey) in list.cards">
+                                <div v-if="!list.collapsed" v-on:click.self="card.showModal=true" id="card">
+                                    <span v-if="!card.edit">{{ card.name }}</span>
+                                    <button class="editButton" @click="card.edit=!card.edit"><i class="far fa-edit" style="font-size:17px;"></i></button>
                                     <input class="edit" type="text"
                                       v-model="card.name"
                                       v-if="card.edit"
                                       ref='search'
                                       v-focus
                                       @blur="doneEdit(card)"
-                                      @keyup.enter="doneEdit(card)">
+                                      @keyup.enter="card.edit=!card.edit">
                                     <a href="#" class="destroyCard" @click="removeCard(card,list)"></a>
                                 </div>
                             </div>

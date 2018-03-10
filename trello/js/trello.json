@@ -1,0 +1,39 @@
+{
+	"lists": [{
+			"name": "todo list 1",
+			"cards": [],
+			"newCard": "",
+			"edit": "false",
+			"collapsed": "false",
+			"date": ""
+		},
+		{
+			"name": "todo list 1",
+			"cards": [],
+			"newCard": "",
+			"edit": "false",
+			"collapsed": "false",
+			"date": ""
+		},
+		{
+			"name": "todo list 1",
+			"cards": [],
+			"newCard": "",
+			"edit": "false",
+			"collapsed": "false",
+			"date": ""
+		},
+		{
+			"name": "todo list 1",
+			"cards": [],
+			"newCard": "",
+			"edit": "false",
+			"collapsed": "false",
+			"date": ""
+		}
+	],
+	"background": {
+		"backgroundColor": ""
+	}
+
+}
