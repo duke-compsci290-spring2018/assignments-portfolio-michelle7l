@@ -7,22 +7,7 @@
 			"collapsed": "false",
 			"date": ""
 		},
-		{
-			"name": "todo list 1",
-			"cards": [],
-			"newCard": "",
-			"edit": "false",
-			"collapsed": "false",
-			"date": ""
-		},
-		{
-			"name": "todo list 1",
-			"cards": [],
-			"newCard": "",
-			"edit": "false",
-			"collapsed": "false",
-			"date": ""
-		},
+		
 		{
 			"name": "todo list 1",
 			"cards": [],
@@ -34,6 +19,21 @@
 	],
 	"background": {
 		"backgroundColor": ""
-	}
+	},
+    "users": [{
+            "username":"michelle",
+            "email":"mwish1000@gmail.com",
+            "url": "http://lorempixel.com/400/200/sports/1/"
+        }
+    ],
+    "categories": [{
+            "color" :"red",
+            "name" :"chores"
+        },
+        {
+            "color":"blue",
+            "name" : "homework"
+        }
+    ]
 
 }

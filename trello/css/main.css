@@ -5,6 +5,9 @@ body {
     padding: 0;
 }
 
+.userSubmit {
+    padding: 10px;
+}
 
 #files {
     text-align: center;
@@ -12,10 +15,20 @@ body {
     width:174px;
 }
 
-.signUp {
+.signIn {    
+    display: block;
+    text-align: center;
+    margin: auto;
+}
+
+.signInB{
     margin: 10px;
 }
 
+.signUpB{
+    margin: 10px;
+    margin-top: 20px;
+}
 
 header {
     padding: 20px;
@@ -84,6 +97,19 @@ header h1{
     font-size: 17px;
     margin-left: 15px;
 
+}
+
+#noAccount {
+    display: inline;
+}
+
+#clickHere {
+    margin: none;
+    padding: none;
+    color:black;
+    font-size: 14px;
+    display: inline;
+    text-decoration: underline;
 }
 
 .userInput {
@@ -246,7 +272,13 @@ i {
     display: inline-block;
     padding: 3px;
 }
+.caption{
+    margin: 5px;
+}
 
+img {
+    width: 300px;
+}
 .up {
     transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
@@ -259,6 +291,11 @@ i {
 
 .collapseList:hover {
     cursor: pointer;
+}
+
+#comment {
+    text-align: left;
+    margin: 2px 20px;
 }
 
 .modal {
@@ -321,20 +358,64 @@ i {
     cursor: pointer;
 }
 
+#todo {
+    background-color: #e2d1cc;
+    margin: 5px 25px;
+    border: none;
+    text-align: left;
+    padding: 5px;
+    padding-top: px;
+    font-family: 'Pavanam', sans-serif;
+    font-size: 15px;
+    position: relative;
+}
+
+
+.destroyTodo{
+    position: absolute;
+    color: black;
+    font-size: 17px;
+    right: 15px;
+    top: 3px;
+}
+
+.destroyTodo:after {
+    cursor: pointer;
+    content: 'x'; 
+}
+.des {
+    margin-top: -7px;
+    font-weight: 600;
+}
+
+
+.bold {
+    font-weight: 600;
+}
+
 #span {
     width: 100vw;
     height: 100vh;
 }
 
+h5 {
+    font-family: 'Pavanam', sans-serif;
+    font-weight: normal;
+    font-size: 30px;
+}
+
 .card {
     position: absolute;
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 600px;
+    max-height: 1000px;
     z-index: 15;
-    top: 20%;
+    top: 10%;
     left: 50%;
-    margin: -200px 0 0 -200px; 
+    margin: -400px 0 0 -300px; 
     padding: 20px;
+}
+#checkCat {
+    margin-right: 5px;
 }
 
 .card h1 {
@@ -369,6 +450,13 @@ i {
     background: none;
     border:none;
 }
+.editButton1 {
+    right: 30px;
+    text-decoration: none;
+    top: 9px;
+    background: none;
+    border:none;
+}
 
 button:hover{
     cursor:pointer;
@@ -381,4 +469,46 @@ button{
     max-width: 130px;
 }
 
+.catbox {
+    color: white;
+    float:left;
+    padding: 10px;
+    margin: 5px; 
+}
+#todoinput {
+    width: 300px;
+    font-size: 15px;
+}
+#addcatbox {
+    color: black;
+    background-color: white;
+    border: solid black 1px;
+    float: left;
+    padding: 1px 9px;
+    margin-left: 10px;
+    margin-top: 13px;
+}
+
+#addT {
+    padding: 2px 12px;
+}
+
+.click:hover {
+    cursor: pointer;
+}
+
+.showAddCat {
+    margin: 10px;
+}
+
+.left1 {
+    margin-right: 200px;
+    font-size: 20px;
+}
+
+.right1 {
+    display: inline;
+    font-size: 20px;
+    margin-right: 2px;
+}
 /* License: This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.

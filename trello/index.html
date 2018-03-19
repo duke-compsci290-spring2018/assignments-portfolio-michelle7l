@@ -28,7 +28,7 @@
     
 <body>
     <div id="app">
-    <div id="span" v-bind:style="background">
+    <div ref="span" id="span" :style="{'background-color':background}">
     
     <header>
         <div class="menu-container">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="right">
                     <div class="more">
-                        <a href="#" class="sidebarOpen" @click="addLists=!addLists"> <i class="fas fa-plus"></i>AddList</a>
+                        <a href="#" class="sidebarOpen" @click="addLists=!addLists"> <i class="fas fa-plus"></i>AddList </a>
                         <div class="dropdownContent" v-if="addLists">
                             <div class="addListInput">
                                 <input @keyup.enter="addList" class="nameList" v-model="newList">
@@ -46,22 +46,33 @@
                             </div> 
                         </div>
                     </div>
-                    <div class="more dropdown">
-                        <a href="#" class="sidebarOpen" @click="user=!user"> <i class="fas fa-user"></i>Sign Up</a>
-                        <div class="dropdownContent" v-if="user">
-                            <div class="userSignIn">
-                                <h4>Sign Up</h4>
-                                <div><p class="username">Username:</p><input class="username userInput"></div>
-                                <div class="emailDiv"><p class="email">Email:</p><input class="email userInput"></div>
-                                <div class="profpicDiv"><p class="profpic">Upload a profile picture!</p>
-                                <form class="imageForm">
+                    <div v-if="loggedIn" class="more dropdown">
+                        <a href="#" class="sidebarOpen" @click="loggedIn=!loggedIn"> <i class="fas fa-user"></i>Log Out</a>
+                    </div>
+                    <div v-if="!loggedIn" class="more dropdown">
+                        <a href="#" class="sidebarOpen" @click="showLoginModal=!showLoginModal"> <i class="fas fa-user"></i>Log In/Sign Up</a>
+                        <div id="signInLogIn" class="dropdownContent" v-if="showLoginModal">
+                            <form id="form">
+                                <div class="userSignIn">
+                                    <h4>{{newUser? "Sign Up":"Log In"}}</h4>
+                                    <div><p class="username">Username:</p><input type="text" class="username userInput" v-model="newUsername"></div>
+                                    <div class="emailDiv"><p class="email">Email:</p><input type="text" class="email userInput" v-model="newEmail"></div>
+                                    <div class="profpicDiv" v-if="newUser"><p class="profpic">Upload a profile picture!</p>
                                     <input type="file" id="files" name="files[]" />
-                                </form>
-                                </div>
-                                <button class="signUp">Sign Up</button>
-                            </div> 
+                                    </div>
+                                    <div v-if="newUser">
+                                    <div class="signUpB"><button class="signIn" @click="signUp">Sign Up</button></div>
+                                    <p id="noAccount">Already have an account?</p><a id="clickHere" href="#" @click="newUser=!newUser">Log in!</a>
+                                    </div>
+                                    <div class="userSubmit" v-if="!newUser">
+                                    <div class="signInB"><button class="signIn" @click="logIn">Log In</button></div>
+                                    <p id="noAccount">Don't have an account?</p><a id="clickHere" href="#" @click="newUser=!newUser">Create one!</a>
+                                    </div>
+                                </div> 
+                            </form>
                         </div>
                     </div>
+                    
                     <div class="more">
                                 <a href="#" class="sidebarOpen" @click="sidebar=!sidebar"> <i class="fas fa-wrench"></i>Options</a>
                     </div>
@@ -89,48 +100,120 @@
                               @keyup.enter="saveEdit(list)">
                     <!-- iterate through card list-->
                             <div v-for="(card, cardKey) in list.cards">
-                                <div v-if="!list.collapsed" v-on:click.self="card.showModal=true" id="card">
+                                <div v-if="(!list.collapsed && card.active)" v-on:click.self="card.showModal=true" id="card">
                                     <span v-if="!card.edit">{{ card.name }}</span>
-                                    <button class="editButton" @click="card.edit=!card.edit"><i class="far fa-edit" style="font-size:17px;"></i></button>
+                                    <button class="editButton" @click="card.edit=!card.edit; saveEditCard(card,list,cardKey)"><i class="far fa-edit" style="font-size:17px;"></i></button>
                                     <input class="edit" type="text"
                                       v-model="card.name"
                                       v-if="card.edit"
                                       ref='search'
-                                      v-focus
-                                      @blur="doneEdit(card)"
-                                      @keyup.enter="card.edit=!card.edit">
-                                    <a href="#" class="destroyCard" @click="removeCard(card,list)"></a>
+                                      @keyup.enter="saveEditCard(card,list,cardKey)">
+                                    <a href="#" class="destroyCard" @click="removeCard(card,list,cardKey)"></a>
                                 </div>
                             </div>
                         <div v-if="!list.collapsed" class="addCardDiv">
                         <input placeholder=" todo" @keyup.enter="addCard(list)" class="nameCard" v-model="list.newCard"> 
                         <button class="addC" @click="addCard(list)">Add</button>
                         </div>
-                        <div class="collapseList" @click="list.collapsed=!list.collapsed"><i v-if="!list.collapsed" class="arrow up"></i><i v-if="list.collapsed" class="arrow down"></i></div>    
+                        <div class="collapseList" @click="list.collapsed=!list.collapsed"><i v-if="!list.collapsed" class="arrow up"></i><i v-if="list.collapsed" class="arrow down"></i></div>  
+                        <i @click="moveLeft(list,listKey)" class="click fas fa-caret-left left1"></i><i @click="moveRight(list,listKey)" class="click fas fa-caret-right right1"></i>
                 </div>
                </div>
         </div>
     </div>
         <!--sidebar-->
         <div class="sidebar" v-if="sidebar">
-            <h1>Menu</h1>
+            <h1>Options</h1>
             <hr>
             <a href="#" class="destroySidebar" @click="sidebar=!sidebar"></a>
             <div class="sidebarContent">
-            <div class="changeBC" @click="backgroundColorChanger=!backgroundColorChanger">Change Background Color</div>
-                <div class="backgroundColorDiv" v-if="backgroundColorChanger">
-                <input type="text" v-on:input="background.backgroundColor = $event.target.value"/>
+                <div> 
+                <div class="changeBC">User</div>
+                <div>Username: {{currentUsername}}</div>
+                <div>Email: {{currentUserEmail}}</div>
                 </div>
                 <hr>
+                <div class="changeBC" @click="backgroundColorChanger=!backgroundColorChanger">Change Background Color</div>
+                <div class="backgroundColorDiv" v-if="backgroundColorChanger">
+                <input placeholder="Color or Hex" type="text" id='backgroundColorTemp' v-model='backgroundColorTemp' @keyup.enter="changeBackground"/>
+                </div>
+                <hr>
+                <div class="changeBC" @click="showAddCategory=!showAddCategory">Categories</div>
+                    <div class="showAddCat" v-if="showAddCategory">
+                    <input placeholder="Category Name" type="text" v-model='newCategory'/>
+                    <input placeholder="Color or Hex" type="text" v-model='newCategoryColor' @keyup.enter="addCategory"/>
+                    <button @click="addCategory">Add Category</button>
+                    </div>
+                <div v-for="cat in categories">
+                    <div class="catbox click" :style="{'background-color':cat.color}" @click="filterByCategory(cat.name)">{{cat.name}}</div>
+                </div>
+                <div id="addcatbox" class="click" @click="showAddCategory=!showAddCategory">+</div>
+                
             </div>
         </div>
         
         <!--modal for cards-->
         <div v-for="list in lists">
-            <div v-for="card in list.cards">
+            <div v-for="(card,cardKey) in list.cards">
             <div v-if="card.showModal" class="card">
-                <a href="#" class="destroyCardModal" @click="card.showModal=!card.showModal"></a>
+                <a href="#" class="destroyCardModal" @click="showModalFalse(list,card,cardKey); card.showModal=false;"></a>
                 <h1>{{ card.name }}</h1>
+                <span>Deadline: {{card.deadline}}<button class="editButton1" @click="editCardDead=!editCardDead; editDead(card.deadline, card,list,cardKey);"><i class="fas fa-plus-square" style="font-size:17px;"></i></button></span> <input placeholder="MM/DD/YYYY" v-model="card.deadline" v-if="editCardDead">
+                <span>Date Created: {{card.dateAdded}} </span>
+                <br>
+                <span class="des bold">Description<button class="editButton1" @click="editCardInfo=!editCardInfo; editInfo(card.description, card,list,cardKey);"><i class="fas fa-plus-square" style="font-size:17px;"></i></button></span><div>{{card.description}}</div>
+                <input placeholder="Any details?" v-model="card.description" v-if="editCardInfo">
+                <br>
+                <span class="bold">Todo List</span>
+                <div>
+                    <input placeholder="What do you need to get done?" class="nameCard" id="todoinput" v-model="newTodo"> 
+                    <button class="addC" id="addT" @click="addTodo(list,card,cardKey)">Add</button>
+                    <div v-for="(todo, todoKey) in card.todoList">
+                        <div id="todo">
+                            {{todo.name}}
+                            <a href="#" class="destroyTodo" @click="removeTodo(list,card,cardKey,todo,todoKey)"></a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div v-for='image in card.images' class="image"><img :src="image.url"><div>{{image.title}}</div></div>
+                <form id="form">
+                <div>
+                    <label for="imgTitle"><p>Image Caption:</p></label>
+                    <input type="text" class='caption' v-model="newImageTitle">
+                    <input type="file" id="files1" name="files[]"/>
+                    
+                </div>
+                <div>
+                    <button type="submit" class="addC" id="addT" @click="storeImage(list,card,cardKey)">Add Image</button>
+                </div>
+                </form>
+                <br>
+                <span class="bold">Categories<button class="editButton1" @click="selectCategories=!selectCategories; addCatToCard(list,card,cardKey);"><i class="fas fa-plus-square" style="font-size:17px;"></i></button></span>
+                <div v-if="selectCategories" v-for="cat in categories">
+                    <div class="check">
+                    <input type="checkbox" id="checkCat" :value="cat.name" v-model="checkedCategories"><label :style="{'color':cat.color}" for="checkCat">{{cat.name}}</label>
+                    </div>
+                </div>
+            
+                <div v-for="cat in card.categories">
+                    {{cat.name}}
+                </div>
+                <div>
+                </div>
+                <br>
+                <span class="bold">Comments</span>
+                <div v-for="comment in card.comments">
+                        <div id="comment">
+                            <span class='bold'>{{comment.user}}: </span>
+                            {{comment.name}}
+                        </div>
+                    </div>
+                <div>
+                <input placeholder="Comment" class="nameCard" id="todoinput" v-model="newComment"> 
+                <button class="addC" id="addT" @click="addComment(list,card,cardKey)">Comment</button>
+                </div>
+                <br>
             </div>
             </div>
         </div>
