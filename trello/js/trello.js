@@ -15,6 +15,7 @@ var listsref = db.ref('lists');
 var usersref = db.ref('users');
 var backgroundref = db.ref('background');
 var categoriesref = db.ref('categories');
+var activityref = db.ref('activity');
 
 //global reference to remote storage
 var storageRef = firebase.storage().ref();
@@ -58,13 +59,15 @@ var app = new Vue({
         newTodo: '',
         selectCategories:false,
         checkedCategories:[],
-        newComment: ''
+        newComment: '',
+        activityModal: false
     },
     firebase: {
         lists: listsref,
         background: backgroundref,
         users: usersref,
-        categories: categoriesref
+        categories: categoriesref,
+        activity: activityref
     
     },
     
@@ -74,7 +77,12 @@ var app = new Vue({
         },
         filteredCards () {
             return filters[this.visibility](this.todos);
-        }
+        },
+        orderedLists (){
+          return this.lists.sort((a,b)=>{
+              return a.id-b.id;
+          })
+      }
     },
     directives: { focus },
     methods: {
@@ -91,11 +99,16 @@ var app = new Vue({
                     date: ''
                 }).then((data,err) => {if(err) {console.log(err)}});
                 this.newList = '';
+                activityref.push({
+                    user: this.currentUsername,
+                    activity: 'added a list.',
+                    date: Date()
+                });
             }
         },
         //ensures there are three lists in a row 
         listsCountInRow (index){ 
-            return this.lists.slice((index - 1) * this.listsPerRow, index * this.listsPerRow)
+            return this.orderedLists.slice((index - 1) * this.listsPerRow, index * this.listsPerRow)
         },
         //adds a card to a list
         addCard (list) { 
@@ -115,6 +128,11 @@ var app = new Vue({
                     users:[]
                 });
                 list.newCard='';
+                activityref.push({
+                    user: this.currentUsername,
+                    activity: 'added a card.',
+                    date: Date()
+                });
             }
         },
         addTodo(list, card, key){
@@ -124,10 +142,20 @@ var app = new Vue({
                 });
                 this.newTodo='';
                 listsref.child(list['.key']).child('cards').child(key).update({showModal: true});
+                activityref.push({
+                    user: this.currentUsername,
+                    activity: 'added a todo.',
+                    date: Date()
+                });
             }
         },
         removeTodo(list,card,cardKey,todo, todoKey){
             listsref.child(list['.key']).child('cards').child(cardKey).child('todoList').child(todoKey).remove();
+            activityref.push({
+                    user: this.currentUsername,
+                    activity: 'removed a todo.',
+                    date: Date()
+                });
         },
         addComment(list, card, key){
             if(this.newComment){
@@ -137,33 +165,69 @@ var app = new Vue({
                 });
                 this.newComment='';
                 listsref.child(list['.key']).child('cards').child(key).update({showModal: true});
+            activityref.push({
+                    user: this.currentUsername,
+                    activity: 'added a comment.',
+                    date: Date()
+                });
             }
         },
         //call to edit a text field
         editItem (list) { 
             listsref.child(list['.key']).update({edit:true});
+        
         },
         //call when finished editing
         saveEdit (list) { 
             listsref.child(list['.key']).update({name:list.name, edit:false});
+            activityref.push({
+                    user: this.currentUsername,
+                    activity: 'edited a list title.',
+                    date: Date()
+                });
         },
         //finish editing a card
         saveEditCard (card, list, key) {
             listsref.child(list['.key']).child('cards').child(key).update({name:card.name});
+            activityref.push({
+                    user: this.currentUsername,
+                    activity: 'edited a card title.',
+                    date: Date()
+                });
         },
         //removes a list
         removeList (list) { 
             listsref.child(list['.key']).remove();
+            activityref.push({
+                    user: this.currentUsername,
+                    activity: 'removed a list.',
+                    date: Date()
+                });
         },
         //removes a card
         removeCard (card, list, key) { 
             listsref.child(list['.key']).child('cards').child(key).remove();
+            activityref.push({
+                    user: this.currentUsername,
+                    activity: 'removed a card.',
+                    date: Date()
+                });
         },
         editDead(dead, card, list, key) {
             listsref.child(list['.key']).child('cards').child(key).update({deadline:dead});    
+            activityref.push({
+                    user: this.currentUsername,
+                    activity: 'added a deadline.',
+                    date: Date()
+                });
         },
         editInfo(des, card, list, key) {
             listsref.child(list['.key']).child('cards').child(key).update({description:des});
+            activityref.push({
+                    user: this.currentUsername,
+                    activity: 'added a description.',
+                    date: Date()
+                });
         },
         // get input element and store it in Firebase
         signUp () {   
@@ -249,6 +313,11 @@ var app = new Vue({
                 name: this.newCategory,
                 color: this.newCategoryColor
             });
+                activityref.push({
+                    user: this.currentUsername,
+                    activity: 'added a category.',
+                    date: Date()
+                });
             }
             
         },
@@ -268,16 +337,42 @@ var app = new Vue({
                         name: this.checkedCategories[cat]
                     });
             }
+            activityref.push({
+                    user: this.currentUsername,
+                    activity: 'categorized a card.',
+                    date: Date()
+                });
             listsref.child(list['.key']).child('cards').child(key).update({showModal: true});
-
-            
-            
         },
+        //shift list left
         moveLeft(list,key){
-            
+            if(key>0){
+                var leftListid = this.lists[key-1].id;
+                var leftKey = this.lists[key-1]['.key'];
+                var currentListid = this.lists[key].id;
+                listsref.child(list['.key']).update({id: leftListid});
+                listsref.child(leftKey).update({id: currentListid});
+                activityref.push({
+                    user: this.currentUsername,
+                    activity: 'shifted a list left',
+                    date: Date()
+                });
+            }  
         },
+        //shift list right
         moveRight(list,key){
-            
+            if(key<this.lists.length-1){
+                var rightListid = this.lists[key+1].id;
+                var rightKey = this.lists[key+1]['.key'];
+                var currentListid = this.lists[key].id;
+                listsref.child(list['.key']).update({id: rightListid});
+                listsref.child(rightKey).update({id: currentListid});
+                activityref.push({
+                    user: this.currentUsername,
+                    activity: 'shifted a list right',
+                    date: Date()
+                });
+            }
         },
         // get input element user used to select local image
         storeImage (list,card,key) {
@@ -289,6 +384,11 @@ var app = new Vue({
                           .put(file)
                           .then(snapshot => this.addImage(pushhere, this.newImageTitle, snapshot.downloadURL));
                 input.value = '';
+                activityref.push({
+                    user: this.currentUsername,
+                    activity: 'added an image to a card.',
+                    date: Date()
+                });
             }
         },
         // now that image has been stored in Firebase, create a reference to it in database
@@ -299,6 +399,7 @@ var app = new Vue({
             });
             // reset input values so user knows to input new data
             this.newImageTitle = '';
+            
         },
         filterByCategory (category) {
             for (var i in this.lists){

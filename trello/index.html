@@ -116,7 +116,8 @@
                         <button class="addC" @click="addCard(list)">Add</button>
                         </div>
                         <div class="collapseList" @click="list.collapsed=!list.collapsed"><i v-if="!list.collapsed" class="arrow up"></i><i v-if="list.collapsed" class="arrow down"></i></div>  
-                        <i @click="moveLeft(list,listKey)" class="click fas fa-caret-left left1"></i><i @click="moveRight(list,listKey)" class="click fas fa-caret-right right1"></i>
+                        <div class='left1' @click="moveLeft(list,listKey)"><i class="click fas fa-caret-left"></i></div>
+                        <div class='right1' @click="moveRight(list,listKey)"><i class="click fas fa-caret-right"></i></div>
                 </div>
                </div>
         </div>
@@ -132,6 +133,8 @@
                 <div>Username: {{currentUsername}}</div>
                 <div>Email: {{currentUserEmail}}</div>
                 </div>
+                <hr>
+                <div class="changeBC" @click="activityModal=!activityModal">See Activity</div>
                 <hr>
                 <div class="changeBC" @click="backgroundColorChanger=!backgroundColorChanger">Change Background Color</div>
                 <div class="backgroundColorDiv" v-if="backgroundColorChanger">
@@ -217,8 +220,15 @@
             </div>
             </div>
         </div>
-        
-        
+        <div v-if='activityModal' class='card'>
+        <h3>Activity</h3> 
+            <a href="#" class="destroyCardModal" @click="activityModal=false;"></a>
+
+            <div v-for='act in activity'>
+                <p> {{act.user}} {{act.activity}} at {{act.date}}</p>
+
+            </div>
+        </div>
         </div>
         </div>
         <script src="js/trello.js"></script>
