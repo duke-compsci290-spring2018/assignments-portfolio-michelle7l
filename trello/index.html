@@ -217,15 +217,29 @@
                 <button class="addC" id="addT" @click="addComment(list,card,cardKey)">Comment</button>
                 </div>
                 <br>
+                <span class="bold">Assign Users
+                <button class="editButton1" @click="selectUsers=!selectUsers; addUserToCard(list,card,cardKey);"><i class="fas fa-plus-square" style="font-size:17px;"></i></button></span>
+                <div v-if="selectUsers" v-for="user in users">
+                    <div class="check">
+                    <input type="checkbox" id="checkCat" :value="user.username" v-model="checkedUsers"><label for="checkCat">{{user.username}}</label>
+                    </div>
+                </div>
+            
+                <div v-for="user in card.users">
+                    {{user.username}}
+                </div>
+                <br>
             </div>
             </div>
         </div>
+        
+        <!--activity modal-->
         <div v-if='activityModal' class='card'>
         <h3>Activity</h3> 
             <a href="#" class="destroyCardModal" @click="activityModal=false;"></a>
 
             <div v-for='act in activity'>
-                <p> {{act.user}} {{act.activity}} at {{act.date}}</p>
+                <p> {{act.user}} {{act.activity}} on {{act.date}}</p>
 
             </div>
         </div>

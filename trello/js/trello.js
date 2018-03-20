@@ -60,7 +60,9 @@ var app = new Vue({
         selectCategories:false,
         checkedCategories:[],
         newComment: '',
-        activityModal: false
+        activityModal: false,
+        selectUsers: false,
+        checkedUsers:[]
     },
     firebase: {
         lists: listsref,
@@ -340,6 +342,29 @@ var app = new Vue({
             activityref.push({
                     user: this.currentUsername,
                     activity: 'categorized a card.',
+                    date: Date()
+                });
+            listsref.child(list['.key']).child('cards').child(key).update({showModal: true});
+        },
+        addUserToCard(list,card,key){
+            var keys =[];
+            listsref.child(list['.key']).child('cards').child(key).child('users').once('value', function(snapshot) {
+                for (var k in snapshot.val()) {
+                    keys.push(k);
+                }
+                });
+            for (k in keys){
+                listsref.child(list['.key']).child('cards').child(key).child('users').child(keys[k]).remove();
+            }
+            
+            for (user in this.checkedUsers){
+                listsref.child(list['.key']).child('cards').child(key).child('users').push({
+                        username: this.checkedUsers[user]
+                    });
+            }
+            activityref.push({
+                    user: this.currentUsername,
+                    activity: 'assigned user to card',
                     date: Date()
                 });
             listsref.child(list['.key']).child('cards').child(key).update({showModal: true});
