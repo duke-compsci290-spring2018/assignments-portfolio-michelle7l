@@ -130,8 +130,10 @@
             <div class="sidebarContent">
                 <div> 
                 <div class="changeBC">User</div>
-                <div>Username: {{currentUsername}}</div>
-                <div>Email: {{currentUserEmail}}</div>
+                <div>Username: {{currentUsername}}</div><input v-if="editingUser" v-model="editedUsername">
+                <div>Email: {{currentUserEmail}}</div><input v-if="editingUser" v-model="editedEmail">
+                <div v-if="loggedIn"><button v-if="!editingUser" @click="editingUser=!editingUser">Edit</button><button v-if="editingUser" @click="editUser">Save</button></div>
+                <div v-if="!loggedIn" class='notloggedin'>(You are currently not logged in.)</div>
                 </div>
                 <hr>
                 <div class="changeBC" @click="activityModal=!activityModal">See Activity</div>

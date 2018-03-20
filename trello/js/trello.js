@@ -62,7 +62,10 @@ var app = new Vue({
         newComment: '',
         activityModal: false,
         selectUsers: false,
-        checkedUsers:[]
+        checkedUsers:[],
+        editingUser: false,
+        editedUsername: '',
+        editedEmail: ''
     },
     firebase: {
         lists: listsref,
@@ -137,6 +140,7 @@ var app = new Vue({
                 });
             }
         },
+        //add todo item to card
         addTodo(list, card, key){
             if(this.newTodo){
                 listsref.child(list['.key']).child('cards').child(key).child('todoList').push({
@@ -151,6 +155,7 @@ var app = new Vue({
                 });
             }
         },
+        //remove todo item from card
         removeTodo(list,card,cardKey,todo, todoKey){
             listsref.child(list['.key']).child('cards').child(cardKey).child('todoList').child(todoKey).remove();
             activityref.push({
@@ -159,6 +164,7 @@ var app = new Vue({
                     date: Date()
                 });
         },
+        //comment on card
         addComment(list, card, key){
             if(this.newComment){
                 listsref.child(list['.key']).child('cards').child(key).child('comments').push({
@@ -188,6 +194,16 @@ var app = new Vue({
                     date: Date()
                 });
         },
+        editUser () {
+            for (i in this.users){
+                if(this.users[i].username == this.currentUsername){
+                    usersref.child(this.users[i]['.key']).update({username:this.editedUsername, email: this.editedEmail})
+                    this.currentUsername= this.editedUsername;
+                    this.currentUserEmail=this.editedEmail;
+                }
+            }
+            this.editingUser=false;
+        },
         //finish editing a card
         saveEditCard (card, list, key) {
             listsref.child(list['.key']).child('cards').child(key).update({name:card.name});
@@ -215,6 +231,7 @@ var app = new Vue({
                     date: Date()
                 });
         },
+        //edit deadline of card
         editDead(dead, card, list, key) {
             listsref.child(list['.key']).child('cards').child(key).update({deadline:dead});    
             activityref.push({
@@ -223,6 +240,7 @@ var app = new Vue({
                     date: Date()
                 });
         },
+        //edit description of card
         editInfo(des, card, list, key) {
             listsref.child(list['.key']).child('cards').child(key).update({description:des});
             activityref.push({
@@ -283,7 +301,7 @@ var app = new Vue({
         logIn () {
             for (var i in this.users) {
                 if(this.users[i].username=== this.newUsername && this.users[i].email===this.newEmail){
-                    this.currentUser = this.newUsername;
+                    this.currentUsername = this.newUsername;
                     this.user='id'+this.newUsername;
                     this.currentUserEmail = this.newEmail;
                     this.currentUserImage = this.users[i].url;
@@ -309,6 +327,7 @@ var app = new Vue({
         showModalFalse(list,card,key){
             listsref.child(list['.key']).child('cards').child(key).update({showModal: false});
         },
+        //add a new category
         addCategory () {
             if (this.newCategory){
             categoriesref.push ({
@@ -323,6 +342,7 @@ var app = new Vue({
             }
             
         },
+        //choose categories for card
         addCatToCard (list,card,key) {
             var keys =[];
             listsref.child(list['.key']).child('cards').child(key).child('categories').once('value', function(snapshot) {
@@ -346,6 +366,7 @@ var app = new Vue({
                 });
             listsref.child(list['.key']).child('cards').child(key).update({showModal: true});
         },
+        //add users to card
         addUserToCard(list,card,key){
             var keys =[];
             listsref.child(list['.key']).child('cards').child(key).child('users').once('value', function(snapshot) {
@@ -426,6 +447,7 @@ var app = new Vue({
             this.newImageTitle = '';
             
         },
+        //show all cards
         showAll () {
             for (var i in this.lists){
                 for (var j in this.lists[i].cards){
@@ -433,6 +455,7 @@ var app = new Vue({
                 }
             }
         },
+        //filter cards by a category
         filterByCategory (category) {
             for (var i in this.lists){
                 for (var j in this.lists[i].cards){

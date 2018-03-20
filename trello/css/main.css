@@ -502,6 +502,9 @@ button{
     margin: 10px;
 }
 
+.notloggedin {
+    font-size: 15px;
+}
 .left1 {
     display: inline;
     margin-right: 200px;
