@@ -403,7 +403,9 @@ h5 {
     font-weight: normal;
     font-size: 30px;
 }
-
+.all {
+    background-color: black;
+}
 .card {
     position: fixed;
     max-width: 600px;

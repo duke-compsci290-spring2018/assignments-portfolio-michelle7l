@@ -426,6 +426,13 @@ var app = new Vue({
             this.newImageTitle = '';
             
         },
+        showAll () {
+            for (var i in this.lists){
+                for (var j in this.lists[i].cards){
+                    this.lists[i].cards[j].active=true;
+                }
+            }
+        },
         filterByCategory (category) {
             for (var i in this.lists){
                 for (var j in this.lists[i].cards){

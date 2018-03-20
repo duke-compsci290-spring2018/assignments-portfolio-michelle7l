@@ -150,6 +150,7 @@
                 <div v-for="cat in categories">
                     <div class="catbox click" :style="{'background-color':cat.color}" @click="filterByCategory(cat.name)">{{cat.name}}</div>
                 </div>
+                <div class="catbox click all" @click="showAll">Show All</div>
                 <div id="addcatbox" class="click" @click="showAddCategory=!showAddCategory">+</div>
                 
             </div>
