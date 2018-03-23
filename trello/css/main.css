@@ -522,13 +522,14 @@ button{
 
 .left2 {
     display: inline;
-    margin-right: 200px;
+    margin-right: 40%;
     font-size: 20px;
+    margin-left: 5%;
 }
 
 .right2 {
     display: inline;
     font-size: 20px;
-    margin-right: -3px;
+    margin-left: 40%;
 }
 /* License: This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
