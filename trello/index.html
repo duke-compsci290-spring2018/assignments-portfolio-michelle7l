@@ -12,8 +12,8 @@
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vuefire/1.4.5/vuefire.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
     
     <!-- styling -->
@@ -109,6 +109,13 @@
                                       ref='search'
                                       @keyup.enter="saveEditCard(card,list,cardKey)">
                                     <a href="#" class="destroyCard" @click="removeCard(card,list,cardKey)"></a>
+                                    <div v-on:click.self="card.showModal=true" class="date">{{getDate(card)}}</div>
+                                    <div v-on:click.self="card.showModal=true" class="date">{{card.description}}</div>
+
+                                    <div class="changeCardList"> 
+                                     <div class='left2' @click="moveLeftCard(list,listKey, card, cardKey)"><i class="click fas fa-caret-left"></i></div>
+                                    <div class='right2' @click="moveRightCard(list,listKey, card, cardKey)"><i class="click fas fa-caret-right"></i></div>
+                                    </div>
                                 </div>
                             </div>
                         <div v-if="!list.collapsed" class="addCardDiv">
@@ -140,6 +147,10 @@
                 <hr>
                 <div class="changeBC" @click="backgroundColorChanger=!backgroundColorChanger">Change Background Color</div>
                 <div class="backgroundColorDiv" v-if="backgroundColorChanger">
+                <input placeholder="Color or Hex" type="text" id='backgroundColorTemp' v-model='backgroundColorTemp' @keyup.enter="changeBackground"/>
+                </div>
+                <hr>
+                <div class="backgroundImageDiv" v-if="backgroundImageChanger">
                 <input placeholder="Color or Hex" type="text" id='backgroundColorTemp' v-model='backgroundColorTemp' @keyup.enter="changeBackground"/>
                 </div>
                 <hr>

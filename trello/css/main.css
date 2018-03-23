@@ -298,6 +298,9 @@ img {
     margin: 2px 20px;
 }
 
+.date {
+    font-size: 15px;
+}
 .modal {
     position: fixed;
     top: 50%;
@@ -412,7 +415,7 @@ h5 {
     z-index: 15;
     top: 10%;
     left: 50%;
-    margin: -600px 0 0 -300px; 
+    margin: -400px 0 0 -300px; 
     padding: 20px;
 }
 #checkCat {
@@ -515,5 +518,17 @@ button{
     display: inline;
     font-size: 20px;
     margin-right: 5px;
+}
+
+.left2 {
+    display: inline;
+    margin-right: 200px;
+    font-size: 20px;
+}
+
+.right2 {
+    display: inline;
+    font-size: 20px;
+    margin-right: -3px;
 }
 /* License: This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.

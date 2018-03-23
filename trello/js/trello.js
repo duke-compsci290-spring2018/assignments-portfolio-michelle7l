@@ -29,7 +29,7 @@ Vue.use(VueFire);
       el.focus()
     },
   }
-
+ 
 //vue instance
 var app = new Vue({
     //initial state
@@ -75,7 +75,6 @@ var app = new Vue({
         activity: activityref
     
     },
-    
     computed: {
          rowCount:function(){     
             return Math.ceil(this.lists.length / this.listsPerRow);
@@ -114,6 +113,10 @@ var app = new Vue({
         //ensures there are three lists in a row 
         listsCountInRow (index){ 
             return this.orderedLists.slice((index - 1) * this.listsPerRow, index * this.listsPerRow)
+        },
+        getDate (card) {
+            var date = new Date(card.dateAdded);
+            return "Added on " + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear() + " at " + date.getHours() + ":" + date.getMinutes();
         },
         //adds a card to a list
         addCard (list) { 
@@ -416,6 +419,34 @@ var app = new Vue({
                 activityref.push({
                     user: this.currentUsername,
                     activity: 'shifted a list right',
+                    date: Date()
+                });
+            }
+        },
+        moveLeftCard (list,key, card, cardKey) {
+            if(key>0){
+                var leftListid = this.lists[key-1].id;
+                var leftKey = this.lists[key-1]['.key'];
+                var currentListid = this.lists[key].id;
+                listsref.child(list['.key']).child('cards').child(cardKey).remove(); //deleted 
+                listsref.child(leftKey).child('cards').push(card);
+                activityref.push({
+                    user: this.currentUsername,
+                    activity: 'shifted a card to the list to its left',
+                    date: Date()
+                });
+            }
+        },
+        moveRightCard (list,key, card, cardKey) {
+            if(key<this.lists.length-1){
+                var rightListid = this.lists[key+1].id;
+                var rightKey = this.lists[key+1]['.key'];
+                var currentListid = this.lists[key].id;
+                listsref.child(list['.key']).child('cards').child(cardKey).remove();
+                listsref.child(rightKey).child('cards').push(card);;
+                activityref.push({
+                    user: this.currentUsername,
+                    activity: 'shifted a card to the list to its right',
                     date: Date()
                 });
             }
