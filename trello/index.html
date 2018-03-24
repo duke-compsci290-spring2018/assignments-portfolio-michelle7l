@@ -31,6 +31,7 @@
     <div ref="span" id="span" :style="{'background-color':background}">
     
     <header>
+        <!--add lists menu item-->
         <div class="menu-container">
             <div class="menu">
                 <div class="michello">
@@ -46,6 +47,7 @@
                             </div> 
                         </div>
                     </div>
+                    <!--log in/sign up menu item-->
                     <div v-if="loggedIn" class="more dropdown">
                         <a href="#" class="sidebarOpen" @click="loggedIn=!loggedIn"> <i class="fas fa-user"></i>Log Out</a>
                     </div>
@@ -58,7 +60,8 @@
                                     <div><p class="username">Username:</p><input type="text" class="username userInput" v-model="newUsername"></div>
                                     <div class="emailDiv"><p class="email">Email:</p><input type="text" class="email userInput" v-model="newEmail"></div>
                                     <div class="profpicDiv" v-if="newUser"><p class="profpic">Upload a profile picture!</p>
-                                    <input type="file" id="files" name="files[]" />
+                                    <input type="file" id="files" name="files[]" @change="previewImage"/>
+                                    <img :src="previewUserImage">
                                     </div>
                                     <div v-if="newUser">
                                     <div class="signUpB"><button class="signIn" @click="signUp">Sign Up</button></div>
@@ -72,11 +75,10 @@
                             </form>
                         </div>
                     </div>
-                    
+                  <!-- options menu item-->
                     <div class="more">
                                 <a href="#" class="sidebarOpen" @click="sidebar=!sidebar"> <i class="fas fa-wrench"></i>Options</a>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -140,6 +142,7 @@
                 <div>Username: {{currentUsername}}</div><input v-if="editingUser" v-model="editedUsername">
                 <div>Email: {{currentUserEmail}}</div><input v-if="editingUser" v-model="editedEmail">
                 <div v-if="loggedIn"><button v-if="!editingUser" @click="editingUser=!editingUser">Edit</button><button v-if="editingUser" @click="editUser">Save</button></div>
+                <img :src="currentUserImage">
                 <div v-if="!loggedIn" class='notloggedin'>(You are currently not logged in.)</div>
                 </div>
                 <hr>
@@ -147,10 +150,6 @@
                 <hr>
                 <div class="changeBC" @click="backgroundColorChanger=!backgroundColorChanger">Change Background Color</div>
                 <div class="backgroundColorDiv" v-if="backgroundColorChanger">
-                <input placeholder="Color or Hex" type="text" id='backgroundColorTemp' v-model='backgroundColorTemp' @keyup.enter="changeBackground"/>
-                </div>
-                <hr>
-                <div class="backgroundImageDiv" v-if="backgroundImageChanger">
                 <input placeholder="Color or Hex" type="text" id='backgroundColorTemp' v-model='backgroundColorTemp' @keyup.enter="changeBackground"/>
                 </div>
                 <hr>
@@ -165,7 +164,6 @@
                 </div>
                 <div class="catbox click all" @click="showAll">Show All</div>
                 <div id="addcatbox" class="click" @click="showAddCategory=!showAddCategory">+</div>
-                
             </div>
         </div>
         
@@ -175,12 +173,16 @@
             <div v-if="card.showModal" class="card">
                 <a href="#" class="destroyCardModal" @click="showModalFalse(list,card,cardKey); card.showModal=false;"></a>
                 <h1>{{ card.name }}</h1>
+                <!--deadline-->
                 <span>Deadline: {{card.deadline}}<button class="editButton1" @click="editCardDead=!editCardDead; editDead(card.deadline, card,list,cardKey);"><i class="fas fa-plus-square" style="font-size:17px;"></i></button></span> <input placeholder="MM/DD/YYYY" v-model="card.deadline" v-if="editCardDead">
+                <!--date created-->
                 <span>Date Created: {{card.dateAdded}} </span>
                 <br>
+                <!-- description-->
                 <span class="des bold">Description<button class="editButton1" @click="editCardInfo=!editCardInfo; editInfo(card.description, card,list,cardKey);"><i class="fas fa-plus-square" style="font-size:17px;"></i></button></span><div>{{card.description}}</div>
                 <input placeholder="Any details?" v-model="card.description" v-if="editCardInfo">
                 <br>
+                <!--todo list-->
                 <span class="bold">Todo List</span>
                 <div>
                     <input placeholder="What do you need to get done?" class="nameCard" id="todoinput" v-model="newTodo"> 
@@ -193,32 +195,31 @@
                     </div>
                 </div>
                 <br>
+                <!-- add images-->
                 <div v-for='image in card.images' class="image"><img :src="image.url"><div>{{image.title}}</div></div>
                 <form id="form">
                 <div>
                     <label for="imgTitle"><p>Image Caption:</p></label>
                     <input type="text" class='caption' v-model="newImageTitle">
                     <input type="file" id="files1" name="files[]"/>
-                    
                 </div>
                 <div>
                     <button type="submit" class="addC" id="addT" @click="storeImage(list,card,cardKey)">Add Image</button>
                 </div>
                 </form>
                 <br>
+                <!--categorize-->
                 <span class="bold">Categories<button class="editButton1" @click="selectCategories=!selectCategories; addCatToCard(list,card,cardKey);"><i class="fas fa-plus-square" style="font-size:17px;"></i></button></span>
                 <div v-if="selectCategories" v-for="cat in categories">
                     <div class="check">
                     <input type="checkbox" id="checkCat" :value="cat.name" v-model="checkedCategories"><label :style="{'color':cat.color}" for="checkCat">{{cat.name}}</label>
                     </div>
                 </div>
-            
                 <div v-for="cat in card.categories">
                     {{cat.name}}
                 </div>
-                <div>
-                </div>
                 <br>
+                <!--comments-->
                 <span class="bold">Comments</span>
                 <div v-for="comment in card.comments">
                         <div id="comment">
@@ -231,6 +232,7 @@
                 <button class="addC" id="addT" @click="addComment(list,card,cardKey)">Comment</button>
                 </div>
                 <br>
+                <!--assign users to card-->
                 <span class="bold">Assign Users
                 <button class="editButton1" @click="selectUsers=!selectUsers; addUserToCard(list,card,cardKey);"><i class="fas fa-plus-square" style="font-size:17px;"></i></button></span>
                 <div v-if="selectUsers" v-for="user in users">
@@ -238,7 +240,6 @@
                     <input type="checkbox" id="checkCat" :value="user.username" v-model="checkedUsers"><label for="checkCat">{{user.username}}</label>
                     </div>
                 </div>
-            
                 <div v-for="user in card.users">
                     {{user.username}}
                 </div>
@@ -251,10 +252,8 @@
         <div v-if='activityModal' class='card'>
         <h3>Activity</h3> 
             <a href="#" class="destroyCardModal" @click="activityModal=false;"></a>
-
             <div v-for='act in activity'>
                 <p> {{act.user}} {{act.activity}} on {{act.date}}</p>
-
             </div>
         </div>
         </div>

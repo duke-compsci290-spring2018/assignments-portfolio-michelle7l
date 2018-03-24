@@ -51,6 +51,7 @@ var app = new Vue({
         currentUsername: 'guest',
         currentUserEmail: 'guest',
         currentUserImage: '',
+        previewUserImage: '',
         newCategory: '',
         newCategoryColor: '',
         showAddCategory: false,
@@ -263,9 +264,9 @@ var app = new Vue({
             }
             if (this.newUsername && this.newEmail && input.files.length === 0) {
                 this.addUser(this.newUsername, this.newEmail, '');
-                alert("You've successfully signed up!");
                 this.loggedIn=true;
                 this.showLoginModal=false;
+                alert("You've successfully signed up!");
                 return true;
             }
             if (this.newUsername && this.newEmail && input.files.length > 0) {
@@ -274,9 +275,9 @@ var app = new Vue({
                           .put(file)
                           .then(snapshot => this.addUser(this.newUsername, this.newEmail, snapshot.downloadURL));
                 input.value = '';
-                alert("You've successfully signed up!");
                 this.loggedIn=true;
                 this.showLoginModal=false;
+                alert("You've successfully logged in!");
                 return true;
             }
             else {
@@ -297,27 +298,43 @@ var app = new Vue({
             this.currentUsername = username;
             this.currentUserEmail = email;
             this.currentUserImage = url;
+            this.previewUserImage = '',
             this.newUsername = '';
             this.newEmail = '';
         },
+        //preview profile picture
+        previewImage(event) {
+            var input = event.target;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    this.previewUserImage = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        },
         //checks if user exists, logs in if user exists
         logIn () {
+            var userExist = false;
             for (var i in this.users) {
                 if(this.users[i].username=== this.newUsername && this.users[i].email===this.newEmail){
-                    this.currentUsername = this.newUsername;
-                    this.user='id'+this.newUsername;
-                    this.currentUserEmail = this.newEmail;
+                    userExist= true;
                     this.currentUserImage = this.users[i].url;
-                    alert("You've successfully logged in!");
-                    this.loggedIn=true;
-                    this.showLoginModal=false;
-                    this.newEmail='';
-                    this.newUsername='';
-                    return true;
                 }
             }
-            alert("Sorry, your account does not exist. Please verify that your username and email is correct or sign up to create an account.");
-            return false;
+            if (userExist){
+                this.currentUsername = this.newUsername;
+                this.user='id'+this.newUsername;
+                this.currentUserEmail = this.newEmail;
+                this.loggedIn=true;
+                this.showLoginModal=false;
+                alert("You've successfully logged in!");
+            }
+            else {
+                 alert("Sorry, your account does not exist. Please verify that your username and email is correct or sign up to create an account.");
+            }
+            this.newEmail='';
+            this.newUsername='';
         },
         //change the background color and stores it as data in firebase
         changeBackground () {
