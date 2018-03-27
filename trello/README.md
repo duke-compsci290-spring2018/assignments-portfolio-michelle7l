@@ -12,7 +12,7 @@ Name: Michelle Li
 NetID: mjl74
 Began project on: 02/24/2018
 Completed project on: 03/19/2018
-Time spent: 55 hours
+Time spent: 125 hours
 
 Resources I used:
 [Stack overflow](https://stackoverflow.com/questions/16260256/jquery-click-function-not-working-when-click-on-image)
@@ -25,5 +25,8 @@ Resources I used:
 
 Assets (code, images, or sounds) I used:
 [Firebase Examples](https://github.com/duke-compsci290-spring2018/example_firebase.git)
+
+Bugs:
+Sometimes a login must be attempted twice as it does not work on the first try. 
 
 License: This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
