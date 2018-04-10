@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    
+  <head>
+    <meta charset="utf-8">
+    <title>Project Proposal</title>
+    
+  </head>
+    
+    <body>
+    <!---------------------------Header----------------------------->
+      
+        <header class=header>
+          <h1>Project Plan </h1>
+            <h4>by Michelle Li and Rui Fu</h4>
+      </header>
+        
+    <!------------------------------project classes------------------------------->
+        
+        <h1>Project Plan</h1>
+        
+        <h3>Overview</h3>
+        <p> 
+        Charitability is a web application that allows people to easily find, support, and get involved with nonprofits and charities they care about. 
+
+        After surveying a group of people, we found that many people are not invested in charities for three major reasons. 
+        1. Lack of transparency. People don’t know which charities can be trusted, and they don’t know where their money is going. 
+        2. A “tiny” impact. People believe small donations won’t make a difference. 
+        3. No passion for the cause. People can’t find charities they care strongly about, and therefore, lack incentive to support.’
+        We hope to tackle these problems through Charitability.
+        </p>
+        
+        <h3>Profile Creation</h3>
+        <p> 
+        When a user creates an account, he will be stored as an user in Firebase. The user will then go through the steps of completing a profile. Based on the answers he gives, we will pull up a list of suggest charities to start exploring. 
+        </p>
+        
+        <h3>User Authentication</h3>
+        <p> 
+        Each user will have their own account and how much money they donated to charities. They can also determine their profile picture, email/username, and a password for their account. They can also send messages to the respective charities if the Charity has an email account associated with it. The user can also change their password if they forget it but they have to type in their old password. User authentication will be created using Vue and firebase authentication.
+        </p>
+        
+        <h3>Find a Charity</h3>
+        <ol> 
+            <li>Finding a charity is made easy through different categories </li>
+            <li>The user can also determine how much money other people have given to a charity </li>
+            <li>Categorize charities based on when they were created</li>
+            <li>Categorize charities based on their location </li>
+
+            <li>Categorize charities based on what they donate to</li>
+            <li>Categorize charities based on how much money they give to their causes</li>
+            <li>Allow user to hide charities that they don’t want to see anymore </li>
+        </ol>
+        
+        <h3>Favorite Charities</h3>
+        <p> 
+A user can select charities to add to a list of favorites. 
+These Charities are in a separate section that the user can look back on.
+        </p>
+        
+        <h3>Keep track of donations and volunteer hours</h3>
+        <p> 
+A visual of a jar that will be filled throughout the year as people make donations periodically so they can see the total amount they’ve given. One where people log their service hours. The jar will be an incentive for people to donate more so that they can fill up the jar depending on how much they donate. The user can also be entered to earn prizes/coupons if they donate to a specific amounts and how much they fill up the jar. We will use these funds by partnering with local charity organizations.
+        </p>
+        
+        <h3>Determine Charities that give the most to their cause
+</h3>
+        <p> 
+This will either be determined with the given API or it will be determined through division of how much the charity gives to their cause and how much people pay to the charity over a certain period of time.
+Display this information over to the person donating to the charity so they will know how much money they are actually giving to their cause.
+        </p>
+        
+        
+        <h3>Software/Technologies Used
+</h3>
+        <p> 
+Vue.JS for creating the site along with HTML/CSS for design aspects
+Firebase for storage
+Charity Navigator API
+Node.JS for backend
+
+        </p>
+        
+        <h3>Data from the API
+</h3>
+        <p> 
+This is an example of an API request URL that we were able to get from the Charity Navigator API website:
+
+https://charitynavigator.github.io/api/CharityNavigatorAPI/generated/Swagger/CharityNavigatorDataAPI.json
+
+Inside looks like this:
+
+"organization": {
+      "charityName": "One Door for Education, Inc.",
+      "ein": "000000085",
+      "charityNavigatorURL": "https://www.charitynavigator.org/?bay=search.profile&ein=000000085&utm_source=DataAPI&utm_content=02c960ca",
+      "_rapid_links": {
+        "related": {
+          "href": "https://api.data.charitynavigator.org/v2/Organizations/000000085"
+        }
+      }
+    }
+  },
+  {
+    "charityNavigatorURL": "https://www.charitynavigator.org/?bay=search.profile&ein=000000087&utm_source=DataAPI&utm_content=02c960ca",
+    "mission": null,
+    "websiteURL": null,
+    "tagLine": null,
+    "charityName": "Roxbury Action Program",
+    "ein": "000000087",
+    "irsClassification": {
+      "deductibility": null,
+      "subsection": null,
+      "nteeType": null,
+      "foundationStatus": null,
+      "nteeSuffix": null,
+      "nteeClassification": null,
+      "deductibilityDetail": null,
+      "nteeCode": null,
+      "nteeLetter": "0"
+    },
+        </p>
+        
+        <image src="images/Screen%20Shot%202018-04-10%20at%201.55.46%20AM.png"></image>
+                <image src="images/Screen%20Shot%202018-04-10%20at%201.55.53%20AM.png"></image>
+
+                <image src="images/Screen%20Shot%202018-04-10%20at%201.56.00%20AM.png"></image>
+
+        
